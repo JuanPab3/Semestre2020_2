@@ -1,0 +1,155 @@
+\documentclass[a4paper]{book}
+
+% ====| P A C K A G E S |==== %
+\usepackage[backend=biber, style=authoryear-icomp]{biblatex}    %Bibliography stuff
+\usepackage[margin=1in,includefoot]{geometry}   %Margins
+\usepackage[utf8]{inputenc} %Language stuff
+\usepackage [latin1]{inputenc}  %Spanish symbols
+\usepackage[spanish]{babel} %Sets document language to spanish
+\usepackage{tcolorbox}  %Frame boxes
+\usepackage{enumerate}  %Lists options
+\usepackage{mfirstuc}   %I use it to capitalize words
+\usepackage{graphicx}   %Use Images
+\usepackage{listings}   %For displaying code
+\usepackage{titlesec}   %Costume titles/sections/...
+\usepackage{hyperref}   %Linking options
+\usepackage{multicol}	%Use column
+\usepackage{amsmath}    %Display equations options
+\usepackage{amssymb}    %More symbols
+\usepackage{titling}    %Use title variables in other places
+\usepackage{xcolor}     %To manage colors
+% =========================== %
+
+% ====| P A C K A G E S    S E T T I N G S |==== %
+\graphicspath{{./Imagenes/}{./Imagenes/Logos/}} %<--- Images path
+\addbibresource{/media/jpi/Data/01_Education/04_bibiografia/bibliography.bib} %<--- Bibliography path
+\setlength{\columnsep}{1cm}
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=black,
+    urlcolor=black
+}
+% ============================================== %
+
+% ====| P E R S O N A L    C O M M A N D S    &    E N V I R O N M E N T S|==== %
+
+% - New page
+\newcommand{\np}{\null\newpage}
+
+% - vertical thic line
+\newcommand\mybar{\kern1pt\rule[-\dp\strutbox]{.8pt}{\baselineskip}\kern1pt}
+
+% - new homework
+\newenvironment{tarea}[3]
+    {
+        \null\newpage
+        \begin{tcolorbox}
+            \textbf{\asignatura\ -\ \autor}
+            \subsection{\capitalisewords{#1}}
+            \label{ssec:#1}
+            \begin{flushright}
+            \textbf{Desde:}  #2 \\
+            \textbf{Hasta:}  #3 \\
+            \end{flushright}
+        \end{tcolorbox}
+
+    \begin{enumerate}[{Ejercicio} 1.]
+    }
+    {
+        \end{enumerate}
+        \np
+    }
+
+
+
+% ============================================================================= %
+
+
+% ====| H E A T H E R S    S E T T I N G S |==== %
+
+\titleformat{\chapter}[display]
+    {\normalfont\huge\bfseries\raggedleft}{\chaptertitlename\ \thechapter}
+    {20pt}{\Huge}
+\titleformat{\section}[display]
+    {\Large\bfseries}{}
+    {0em}{}[\titlerule]
+
+
+\newcommand{\titPag}{
+    \begin{titlepage}
+        \begin{flushright}
+            \textsc{\large {\semestre\ Semestre}}\\
+            \line(1,0){450} \\
+            [0.635cm]
+            \huge{\bfseries \asignatura} \\
+            [0.2cm]
+            \line(1,0){350} \\
+            \LARGE{\bfseries \autor} \\
+            [16.25cm]
+        \end{flushright}
+        \begin{flushright}
+        \textsc{
+            \universidad \\
+            [0.1cm]
+            \escuela \\
+            [0.1cm]
+            \carrera
+        }
+        \end{flushright}
+    \end{titlepage}
+}
+% ============================================== %
+
+% ====| C O D E    I N    F I L E S    S E T T I N G S |==== %
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,
+    breaklines=true,
+    captionpos=b,
+    keepspaces=true,
+    numbers=left,
+    numbersep=5pt,
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    tabsize=2
+}
+
+\lstset{style=mystyle}
+% ========================================================== %
+
+\newcommand{\asignatura}{Probabilidad y Estadística 1}
+\newcommand{\autor}{Juan Pablo Sierra Useche}
+\newcommand{\semestre}{Tercer}
+\newcommand{\universidad}{Universidad Del Rosario}
+\newcommand{\escuela}{Escuela de Ingeniería, Ciencia y tecnología}
+\newcommand{\carrera}{Matemáticas Aplicadas y Ciencias de la Computación}
+
+
+\begin{document}
+
+    \titPag
+    \tableofcontents
+
+    % ====| B E G I N     O F    W O R K    S P A C E |==== %
+
+
+
+
+
+    % ====| E N D    O F    W O R K    S P A C E |==== %
+
+    \printbibliography
+\end{document}
