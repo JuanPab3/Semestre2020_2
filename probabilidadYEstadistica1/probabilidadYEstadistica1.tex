@@ -1,134 +1,8 @@
 \documentclass[a4paper]{book}
 
-% ====| P A C K A G E S |==== %
-\usepackage[backend=biber, style=authoryear-icomp]{biblatex}    %Bibliography stuff
-\usepackage[margin=1in,includefoot]{geometry}   %Margins
-\usepackage[utf8]{inputenc} %Language stuff
-\usepackage [latin1]{inputenc}  %Spanish symbols
-\usepackage[spanish]{babel} %Sets document language to spanish
-\usepackage{tcolorbox}  %Frame boxes
-\usepackage{enumerate}  %Lists options
-\usepackage{mfirstuc}   %I use it to capitalize words
-\usepackage{graphicx}   %Use Images
-\usepackage{listings}   %For displaying code
-\usepackage{titlesec}   %Costume titles/sections/...
-\usepackage{hyperref}   %Linking options
-\usepackage{multicol}	%Use column
-\usepackage{amsmath}    %Display equations options
-\usepackage{amssymb}    %More symbols
-\usepackage{titling}    %Use title variables in other places
-\usepackage{xcolor}     %To manage colors
-% =========================== %
-
-% ====| P A C K A G E S    S E T T I N G S |==== %
-\graphicspath{{./Imagenes/}{./Imagenes/Logos/}} %<--- Images path
-\addbibresource{/media/jpi/Data/01_Education/04_bibiografia/bibliography.bib} %<--- Bibliography path
-\setlength{\columnsep}{1cm}
-\hypersetup{
-    colorlinks,
-    citecolor=black,
-    filecolor=black,
-    linkcolor=black,
-    urlcolor=black
-}
-% ============================================== %
-
-% ====| P E R S O N A L    C O M M A N D S    &    E N V I R O N M E N T S|==== %
-
-% - New page
-\newcommand{\np}{\null\newpage}
-
-% - vertical thic line
-\newcommand\mybar{\kern1pt\rule[-\dp\strutbox]{.8pt}{\baselineskip}\kern1pt}
-
-% - new homework
-\newenvironment{tarea}[3]
-    {
-        \null\newpage
-        \begin{tcolorbox}
-            \textbf{\asignatura\ -\ \autor}
-            \subsection{\capitalisewords{#1}}
-            \label{ssec:#1}
-            \begin{flushright}
-            \textbf{Desde:}  #2 \\
-            \textbf{Hasta:}  #3 \\
-            \end{flushright}
-        \end{tcolorbox}
-
-    \begin{enumerate}[{Ejercicio} 1.]
-    }
-    {
-        \end{enumerate}
-        \np
-    }
-
-
-
-% ============================================================================= %
-
-
-% ====| H E A T H E R S    S E T T I N G S |==== %
-
-\titleformat{\chapter}[display]
-    {\normalfont\huge\bfseries\raggedleft}{\chaptertitlename\ \thechapter}
-    {20pt}{\Huge}
-\titleformat{\section}[display]
-    {\Large\bfseries}{}
-    {0em}{}[\titlerule]
-
-
-\newcommand{\titPag}{
-    \begin{titlepage}
-        \begin{flushright}
-            \textsc{\large {\semestre\ Semestre}}\\
-            \line(1,0){450} \\
-            [0.635cm]
-            \huge{\bfseries \asignatura} \\
-            [0.2cm]
-            \line(1,0){350} \\
-            \LARGE{\bfseries \autor} \\
-            [16.25cm]
-        \end{flushright}
-        \begin{flushright}
-        \textsc{
-            \universidad \\
-            [0.1cm]
-            \escuela \\
-            [0.1cm]
-            \carrera
-        }
-        \end{flushright}
-    \end{titlepage}
-}
-% ============================================== %
-
-% ====| C O D E    I N    F I L E S    S E T T I N G S |==== %
-\definecolor{codegreen}{rgb}{0,0.6,0}
-\definecolor{codegray}{rgb}{0.5,0.5,0.5}
-\definecolor{codepurple}{rgb}{0.58,0,0.82}
-\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
-
-\lstdefinestyle{mystyle}{
-    backgroundcolor=\color{backcolour},
-    commentstyle=\color{codegreen},
-    keywordstyle=\color{magenta},
-    numberstyle=\tiny\color{codegray},
-    stringstyle=\color{codepurple},
-    basicstyle=\ttfamily\footnotesize,
-    breakatwhitespace=false,
-    breaklines=true,
-    captionpos=b,
-    keepspaces=true,
-    numbers=left,
-    numbersep=5pt,
-    showspaces=false,
-    showstringspaces=false,
-    showtabs=false,
-    tabsize=2
-}
-
-\lstset{style=mystyle}
-% ========================================================== %
+\usepackage{import}
+\input{./../../commands.tex}
+\usepackage{cmands}
 
 \newcommand{\asignatura}{Probabilidad y Estadística 1}
 \newcommand{\autor}{Juan Pablo Sierra Useche}
@@ -146,8 +20,734 @@
     % ====| B E G I N     O F    W O R K    S P A C E |==== %
 
 
+    \begin{chapter}{Evetos y Conteo}
+    \label{chap:evetos_y_conteo}
+
+    \section{03.08.2020 $\mybar$ Conjuntos, Modelos Probabilísticos y Axiomas}
+    \label{sec:conjuntos_modelos_probabilisticos_y_axiomas}
+
+    \subsection{Repaso Tería de Conjuntos}
+    \label{ssec:repaso_teria_de_conjuntos}
+
+    \begin{description}
+        \item[Conjunto] Un conjunto es una colección de objetos de cualquier
+            tipo (ej: números, personas, colores, sabores, etc...), a estos
+            objetos se les  conoce como los elementos del conjunto.\\
+            \textbf{Ejemplos:}
+            \begin{itemize}
+                \item Los números naturales $\mathbb N$.
+                \item Los alumnos del curso.
+            \end{itemize}
+        \item[Objetos] Siendo así, son los objetos aquellos que definen a los
+            \textbf{conjuntos} en su totalidad.
+    \end{description}
+    \subsubsection{Notación de Conjuntos}
+    \label{ssec:notacion_de_conjuntos}
+
+        Si $\mathbb S$ es un conjunto y \textbf{x} un elemento de $\mathbb S$,
+        escribimos $x\in \mathbb S$. Pero en el caso contrario, donde
+        \textbf{x} no es un elemento de $\mathbb S$ escribimos $x\notin \mathbb
+        S$.
+
+    \begin{description}
+        \item[Conjunto Vacío] Este conjunto se caracteriza por no tener ningún
+            elemento dentro de si mismo, y se denota: $\emptyset$.
+    \end{description}
+
+    \subsubsection{Notación Conjunto Finito}
+    \label{ssec:notacion_conjunto_finito}
+
+        Si $ \mathbb S $ es un conjunto finito co elementos $ x_1,x_2,...,x_n
+        $. Podemos denotar a S como:
+        \begin{equation*}
+        \label{eq:1.1}
+            \mathbb S = \{x_1,x_2,...,x_n\}
+        \end{equation*}
+
+    \begin{description}
+        \item[Ejemplos:] $ \mathbb S $ conjuto de resulatdos de un dado
+            \begin{equation*}
+            \label{eq:1.2}
+                \mathbb S=\{1,2,3,...,6\}
+            \end{equation*}
+    \end{description}
+
+    \subsubsection{Notación Conjunto Infinito}
+    \label{ssec:notacion_conjunto_infinito}
+
+    Si $ \mathbb S$ es un conjunto infinito enumerable con elementos $
+    x_1,x_2,...$ se puede escribir a $ \mathbb S $ como:
+
+    \begin{equation*}
+    \label{eq:1.3}
+        \mathbb S=\{x_1,x_2,...\}
+    \end{equation*}
+
+    \subsection{Tipos de Notación}
+    \label{ssec:tipos_de_notacion}
+
+    \begin{description}
+        \item[Extención] Como los casos presentados anteriormente, esté tipo de
+            notación implica en enumerar elementos demostrando el patron que
+            describe el comportamiento del conjunto.
+
+            \begin{equation*}
+            \label{eq:1.4}
+                \mathbb P=\{2,4,6,...,40\}
+            \end{equation*}
+
+            \begin{equation*}
+            \label{eq:1.5}
+                \mathbb W=\{amarillo,azul,rojo\}
+            \end{equation*}
+
+        \item[Comprención] En este caso tipo de notación no se mencionan los
+            elemento, sino que se mencionan las caracteristicas que tiene cada
+            elemento perteneciete a el dicho conjunto.
+
+            \begin{equation*}
+            \label{eq:1.6}
+                 \mathbb W = \{x|x\ es\ un\ color\ primario\}
+            \end{equation*}
+
+            \begin{equation*}
+            \label{eq:1.7}
+                \mathbb P=\{x|x\ es\ un\ número\ par\ entre\ el\ 2\ y\ el\ 40\}
+            \end{equation*}
+    \end{description}
+
+    \subsection{Relaciones Entre Conjuntos}
+    \label{ssec:relaciones_entre_conjuntos}
+
+    Se dice que $ \mathbb S $ es un subconjunto de $ \mathbb T $ ($ \mathbb
+    S,\mathbb T $ conjuntos) es decir que $ \mathbb S $ está contenido en $
+    \mathbb T $ si todo elemento de $ \mathbb S $ es también un elemento de $
+    \mathbb T $.
+
+    \subsubsection{Notación Sub Conjuntos}
+    \label{ssec:notacion_sub_conjuntos}
+
+    En el caso donde el \textbf{sub conjunto} puede ser el mismo
+    \textbf{conjunto} se utiliza la siguiente notación:
+
+    \begin{equation*}
+    \label{eq:1.8}
+        \mathbb S\subseteq \mathbb T
+    \end{equation*}
+
+    Pero si el \textbf{sub conjunto} no puede ser el mismo \textbf{conjunto} se
+    utiliza la siguiente notación:
+
+    \begin{equation*}
+    \label{eq:1.9}
+        \mathbb S\subset \mathbb T
+    \end{equation*}
+
+    En el caso de que un \textbf{conjunto} no esté contenido en otro, se
+    utiliza la siguiente notación:
+
+    \begin{equation*}
+    \label{eq:1.10}
+        \mathbb S\not\subseteq \mathbb T
+    \end{equation*}
+
+    \subsection{Conjunto Universal}
+    \label{ssec:conjunto_universal}
+
+    Denotamos con $ \Omega $ el \textbf{Conjunto Universal}; un conjunto
+    especial que como caracteristica principal tiene a todos los elementos de
+    interés en un determinado contexto.
+
+    \begin{description}
+        \item[Ejemplo] $\Omega=\mathbb C$ si estudiamos raíces de polinomios
+            con coeficientes reales. (\textit{Teorema Findamental del
+            Álgebra}).
+    \end{description}
+
+    \subsection{Álgebra de Conjuntos}
+    \label{ssec:algebra_de_conjuntos}
+
+    \begin{description}
+        \item[Complemento] La notación pala el complemento es $\mathbb S^{c}$
+            dondo nos referimos al \textbf{complemento} de $\mathbb S$. Y esté
+            se puede definir de la siguiente forma:
+
+            \begin{equation*}
+            \label{eq:1.11}
+                \mathbb S^{c} = \{x|x\not\in \mathbb S\ (x\in \Omega)\}
+            \end{equation*}
+
+        \item[Unión] Donde $\mathbb S$ y $\mathbb J$ son conjuntos, la notación
+            para la unión entre dos conjuntos es $\mathbb S\cup \mathbb J$ e
+            implica:
+
+            \begin{equation*}
+            \label{eq:1.12}
+                \mathbb S\cup \mathbb J = \{x|x\in \mathbb S\ ó\ x\in \mathbb J\}
+            \end{equation*}
+
+        \item[Intersección] Sean $\mathbb S$ y $\mathbb T$ conjuntos, su
+            intersección se escribe: $\mathbb S\cap \mathbb T$, y se define de
+            la siguiente forma:
+
+            \begin{equation*}
+            \label{eq:1.13}
+                \mathbb S \cap \mathbb T = \{x|x\in \mathbb S\ y\ x\in \mathbb T\}
+            \end{equation*}
+
+        \item[Unión entre varios (o infinitos) conjunto]
+            \begin{equation*}
+            \label{eq:1.14}
+                \bigcup_{i=0}^{n}\mathbb S_{i} = \{x|x\in \mathbb S_{i}\ (0>i>n)\}
+            \end{equation*}
+
+        \item[Intersección entre varios (o infinitos) conjunto]
+            \begin{equation*}
+            \label{eq:1.14}
+                \bigcap_{i=0}^{n}\mathbb S_{i} = \{x|x\in \mathbb S_{i}\ (0>i>n)\}
+            \end{equation*}
+
+        \item[Conjuntos Disyuntos] Dos conjuntos $\mathbb S\ y\ \mathbb T$ se
+            dicen disyuntos o disjuntos si $\mathbb S\cap \mathbb T=\emptyset$
+            lo que se generaliza al decir que $\bigcap_{i=0}^{n}\mathbb
+            S_{i}=\emptyset$.
+
+        \item[Disyunción 2 a 2] Varios conjuntos $\mathbb S_i$ se dicen
+            conjuntos disyuntos 2 a 2 si $\mathbb S_i \cap \mathbb
+            S_j=\emptyset$.
+    \end{description}
+
+    \begin{obs}
+        El par ordenado de dos objetos $x,y$ se denota por $(x,y)$ donde
+        $(x,y)\ne(y,x)$. Lo que se diferencia de conjuntos donde
+        $\{x,y\}=\{y,x\}$.
+    \end{obs}
+
+    \begin{obs}
+        Los diagramas de venn (representaciones graficas de conjuntos) resultan
+        útiles al realizar problemas que involucran conjuntos.
+    \end{obs}
+
+    \begin{tarea}{Tarea Demostración de Lemas}{03.08.2020}{05.08.2020}
+        \item Demostrar los siguientes lemas:
+
+            \begin{enumerate}
+
+                \item $\mathbb S\cup \mathbb T= \mathbb T\cup \mathbb S$
+                    (conmutatividad)
+
+                    \textbf{Demostración}
+
+                    Sean $\mathbb S,\mathbb T$ conjuntos, para demostrar que
+                    $\mathbb S\cup \mathbb T= \mathbb T\cup \mathbb S$ es
+                    necesario demostrar las dos siguientes condiciones:
+
+                    \begin{itemize}
+                        \item Si $x\in(\mathbb S\cup \mathbb T)$ es decir $x\in
+                            \mathbb S$ o $x\in \mathbb S$ o $x\in \mathbb T$,
+                            luego se pude decir que $x\in(\mathbb T\cup \mathbb
+                            S)$.
+
+                        \item Si $x\in(\mathbb T\cup \mathbb S)$ es decir $x\in
+                            \mathbb T$ o $x\in \mathbb S$ o $x\in \mathbb S$,
+                            luego se pude decir que $x\in(\mathbb S\cup \mathbb
+                            T)$.
+                    \end{itemize}
+
+                    Como ambas situaciones son verdaderas, se puede concluir
+                    que la proposición es verdadera. $\blacksquare$
 
 
+                \item $\mathbb S\cap(\mathbb T\cup \mathbb U)=(\mathbb S\cap
+                    \mathbb T)\cup(\mathbb S\cap \mathbb U)$ (distributividad)
+
+                    \textbf{Demostración}
+
+                    Sean $\mathbb S, \mathbb T\ y\ \mathbb U$ conjuntos, para
+                    demostrar que la proposición es verdadera hay que demostrar
+                    las dos siguientes condiciones:
+
+                    \begin{itemize}
+                        \item Si $x\in\left( \mathbb S\cap\left( \mathbb
+                            T\cup\mathbb U \right) \right)$ significa que
+                            $x\in\mathbb S$ y también que $x\in\left( \mathbb
+                            T\cup\mathbb U \right)$ es decir, que
+                            incondicionalmente $x\in\mathbb S$ pero también
+                            $x\in\mathbb T$ ó $x\in\mathbb U$. Por lo tanto se
+                            puede decir que $x\in\left( \left( \mathbb
+                            S\cap\mathbb T \right)\cup\left( \mathbb
+                            S\cap\mathbb U\right) \right)$.
+                        \item Por otro lado hay que asumir que $x\in\left(
+                            \left( \mathbb S\cap\mathbb T\right)\cup\left(
+                            \mathbb S\cap\mathbb U\right) \right)$, lo que
+                            significa que ó $x\in\left( \mathbb S\cap\mathbb T
+                            \right)$ ó $x\in\left( \mathbb S\cap\mathbb U
+                            \right)$. A partir de lo anterior se puede asegurar
+                            que $x\in\mathbb S$ y que $x\in\mathbb T$ ó
+                            $x\in\mathbb U$, que es lo mismo que decir
+                            $x\in\left( \mathbb S\cap\left( \mathbb
+                            T\cup\mathbb U \right) \right)$
+                    \end{itemize}
+
+                    Ya que se cumplen ambas condiciones, se puede concluir que
+                    la proposición es verdadera. $\blacksquare$
+
+                \item $(\mathbb S^{c})^{c} = \mathbb S$
+
+                \textbf{Demostración}
+
+                Sea $\mathbb S$ un conjunto, es necesario demostrar dos
+                situaciones para demostrar verdadera a la proposición:
+
+                \begin{itemize}
+                    \item El hecho de que $x\in(S^{c})^{c}$ quiere decir que
+                        $x\notin\mathbb S^{c}$ y por la definición de
+                        complemento, se puede asegurar que $x\in\mathbb S$.
+                    \item Asumiendo que $x\in\mathbb S$, por definición se
+                        puede decir que $x\notin\mathbb S^{c}$, implicando que
+                        x pertenece al complemento de $\mathbb S$.
+                \end{itemize}
+
+                Ya que ambas situaciones son verdaderas se a demostrado
+                verdadera a la proposición. $\blacksquare$
+
+                \item $\mathbb S\cup \Omega = \Omega$
+
+                \textbf{Demostración}
+
+                Sea $\mathbb S$ un \textbf{sub conjunto} de $\Omega$, se tiene:
+
+                \begin{itemize}
+                    \item Al decir $x\in\left( \mathbb S\cup\Omega \right)$,
+                        por definición de \textbf{sub conjunto} se puede
+                        asegurar que es lo mismo que decir que $x\in\Omega$ ya
+                        que todo x que esté en $\mathbb S$ va a estar en
+                        $\Omega$.
+                    \item Por otro lado al decir que $x\in\Omega$ se asegura
+                        que x pertenece a la unión entre $\Omega$ y cualquiera
+                        de sus \textbf{sub conjuntos}. Por lo tanto se puede
+                        igualar con $\mathbb S\cup\Omega$.
+                \end{itemize}
+
+            Teniendo en cuenta de que ambas condiciones se cumplen, se ha
+            demostrando que la proposición es verdadera. $\blacksquare$
+            \np
+                \item $\mathbb S\cup(\mathbb T\cup  \mathbb U) = (\mathbb S\cup
+                    \mathbb T)\cup \mathbb U$ (asociatividad)
+
+                \textbf{Demostración}
+
+                Sean $\mathbb S,\mathbb T,\mathbb U$ conjuntos luego:
+                \begin{equation*}
+                \label{eq:1.15}
+                \begin{split}
+                    x\in\left( \mathbb S\cup\left( \mathbb T\cup\mathbb U
+                    \right) \right) & \iff x\in\mathbb S\lor x\in\left( \mathbb
+                    T\cup\mathbb U\right)\\
+                    & \iff x\in\mathbb S\lor \left( x\in\mathbb T\lor x
+                    \in\mathbb U \right)\\
+                    & \iff x\in\mathbb S\lor x\in\mathbb T\lor x \in\mathbb U\\
+                    & \iff x\in\left( \left( \mathbb S\cup \mathbb T
+                    \right)\cup\mathbb U \right)\\
+                \end{split}
+                \end{equation*}
+
+                Así demostrando que la proposición es verdadera. $\blacksquare$
+
+                \item $\mathbb S\cup(\mathbb T\cap \mathbb U)=(\mathbb S\cup
+                    \mathbb T)\cap(\mathbb S\cup \mathbb U)$
+
+                \textbf{Demostración}
+
+                Sean $\mathbb S\cup\mathbb T\cup\mathbb U$ conjuntos, entonces:
+                \begin{equation*}
+                \label{eq:1.16}
+                \begin{split}
+                    x\in\left(\mathbb S\cup\left(\mathbb T\cap \mathbb
+                    U\right)\right)&\iff x\in\mathbb S\lor\left(\mathbb
+                    T\cap\mathbb U\right)\\
+                    &\iff x\in\mathbb S\lor\left(x\in\mathbb T\land x\in\mathbb
+                    U\right)\\
+                    &\iff \left(x\in\mathbb S\lor x\in\mathbb
+                    T\right)\land\left(x\in\mathbb S\lor x\in\mathbb U\right)\\
+                    &\iff x \in\left(\left(\mathbb S\cup\mathbb
+                    T\right)\cap\left(\mathbb S\cup\mathbb U\right)\right)
+                \end{split}
+                \end{equation*}
+
+                De está forma se acaba de comprobar que la proposición es
+                verdadera. $\blacksquare$
+
+                \item $\mathbb S\cap \mathbb S^{c}=\emptyset$
+
+                \textbf{Demostración}
+
+                Sea $\mathbb S$ un conjunto, y por contradicción suponiendo que
+                $\mathbb S\cap\mathbb S^{c}\ne\emptyset$, por lo tanto $\exists
+                x$ tal que $x\in\left(\mathbb S\cap\mathbb S^{c}\right)$ pero
+                por definición del complemento de $\mathbb S$ ($\mathbb S^{c}$
+                es todo lo que no está dentro de $\mathbb S$) significa que
+                $\nexists x\ \left(\to\gets\right)$. Asi demostrando que la
+                proposición es verdadera. $\blacksquare$
+
+                \item $\mathbb S\cap \Omega=\mathbb S$
+
+                \textbf{Demostración}
+
+                Sea $\mathbb S$ un conjunto, entonces es necesario evealuar las
+                siguientes situaciones:
+                \begin{itemize}
+                    \item Suponiendo que $x\in\left(\mathbb S\cap\Omega\right)$
+                        como $\mathbb S\subseteq\Omega$ entonces de cualquier
+                        forma $\forall x\in\mathbb S$ tambien $x\in\Omega$.
+                        Pero $\nexist x$ talque $x\in\mathbb S^{c}$.
+
+                    \item Suponiendo que $x\in\mathbb S$, y como $\mathbb
+                        S\subseteq\Omega$ entonces $x\in\mathbb S\land
+                        x\in\Omeg$ es decir $x\in\left(\mathbb
+                        S\cap\Omega\right)$.
+                \end{itemize}
+
+                Ya que en ambos casos son verdaderos se ha demostrado que la
+                proposición es verdadera. $\blacksquare$
+            \end{enumerate}
+
+        \item Demostrar las \textbf{Leyes de De Morgan}:
+            \begin{enumerate}
+                \item \[\Big(\bigcup_{i=1}^{n}\mathbb S_{i}\Big)^{c} = \bigcap_{i=1}^{n}\mathbb S_{i}^{c}\]
+
+                \textbf{Demostración}
+
+                Sea la union de varios \textbf{conjuntos} tal que
+                    $\bigcup_{i=1}^{n}\mathbb S_{i}=\mathbb S_{1}\cup\mathbb
+                    S_{2}\cup\mathbb S_{3}\cup...\cup\mathbb S_{n}$ ahora por
+                    induccion matematica se van a revisar los siguientes casos:
+
+                    \begin{description}
+                        \item[Caso base (n=1)]\\
+                        \begin{equation*}
+                        \label{eq:1.17}
+                        \Big(\bigcup_{i=1}^{1}\mathbb S_{i}\Big)^{c} =
+                            \Big(\mathbb S_{i}\Big)^{c} = \mathbb
+                            S_{1}^{c}=\bigcap_{i=1}^{1}\mathbb S_{1}^{c}
+                        \end{equation*}
+                        \np
+                        \item[Caso inductivo]\\
+                            Suponiendo que $\bigcup_{i=1}^{n}\mathbb S_{i}$ la propiedad tal que:
+                            \begin{equation*}
+                            \label{eq:1.18}
+                            \begin{split}
+                            &\Big(\bigcup_{i=1}^{n}\mathbb S_{i}\Big)^{c} =
+                                \mathbb S_{1}^{c}=\bigcap_{i=1}^{n}\mathbb
+                                S_{i}^{c}\\
+                            &Ahora:\\
+                            &\left(\mathbb S_{1}\cup\mathbb
+                                S_{2}\cup...\cup\mathbb
+                                S_{n}\right)^{c}\cap\mathbb S_{n+1}^{c}
+                                =\left(\mathbb S_{1}^{c}\cap\mathbb
+                                S_{2}^{c}\cap...\cap\mathbb
+                                S_{n}^{c}\right)\cap\mathbb S_{n+1}^{c}\\
+                            &\left(\mathbb S_{1}\cup\mathbb
+                                S_{2}\cup...\cup\mathbb S_{n}\cup\mathbb
+                                S_{n+1}\right)^{c}=\left(\mathbb
+                                S_{1}^{c}\cap\mathbb
+                                S_{2}^{c}\cap...\cap\mathbb
+                                S_{n}^{c}\cap\mathbb S_{n+1}^{c}\right)\\
+                            &\Big(\bigcup_{i=1}^{n+1}\mathbb
+                                S_{i}\Big)^{c}=\bigcap_{i=1}^{n+1}\mathbb
+                                S_{i}^{c}\\
+                            \end{split}
+                            \end{equation*}
+                            Así demostrando por inducción matemática que la
+                            proposición es verdadera para todo $n>1$.
+                            $\blacksquare$
+
+                    \end{description}
+
+                \item \[\Big(\bigcap_{i=0}^{n}\mathbb S_i\Big)^{c} =
+                    \bigcup_{i=0}^{n}\mathbb S_{i}^{c}\]
+            \end{enumerate}
+    \end{tarea}
+
+    \section{04.08.2020 $\mybar$ Modelos Probabilisticos}
+    \label{sec:modelos_probabilisticos}
+
+    Un modelo probabilístico consiste en la traducción situaciones inciertas a
+    un lenguaje matemático.
+
+    Suponiendo que existe un experimento incierto al que se le va a asociar un
+    modelo probabilistico, el cual se construye de los siguientes tres
+    elementos:
+
+    \begin{enumerate}[{1. }]
+        \item El espacio muestral denotado por $\Omega$. Este espacio es el
+            conjunto con todos los posibles resultados del experimento.
+
+        \item Ley de probabilidad denotada por $P$.
+
+        \item Un espacio de eventos denotados por $F$, donde $F\subseteq
+            \varphi\left(\Omega\right)$.
+    \end{enumerate}
+
+    Para cada elemento de $F$ se le va a asociar la probabilidad con la
+    notación: $F\left(A\right)$ donde $A\subseteq F$.
+
+    Todos los dichos elementos pertencecientes a $F$ tienen siertas
+    caracteristicas:
+
+    \begin{obs}
+        Los subconjuntos medibles de $\Omega$ se llaman eventos.
+    \end{obs}
+
+    \begin{itemize}
+        \item Los elementos deben ser \textbf{mutuamente excluyentes}, es decir
+            que si un elemento del espacio muestral es solución al
+            \textbf{modelo} entonces ningun otro elemento puede ser solución
+            para el modelo.
+        \item Los elementos del conjunto deben ser colectivamente exhaustivo,
+            lo que quiere decir que la suma de todos los elementos en el
+            conjuntos representan todas las posibles soluciones al experimento.
+    \end{itemize}
+
+    \begin{obs}
+        \begin{itemize}
+            \item El grado de detalle al definir $\Omega$ depende del interés en el
+            problema (se debe incluir todo lo nnecesario y excluir todo lo no
+            necesario).
+             \item $\Omega$ puede ser \textit{finito} o \textit{infinito}.
+        \end{itemize}
+    \end{obs}
+
+    \subsubsection{Modelos Secuenciales}
+    \label{ssec:modelos_secuenciales}
+
+    Si el experimento es de carácter secuencial, es útil describir $\Omega$
+    cuadriculas o \textbf{arboles}.
+
+
+    \subsection{Axiomas de Probabilidad}
+    \label{ssec:axiomas_de_probabilidad}
+
+    Suponiendo que se conoce $\Omega$ y $F$. $P$ debe reflejar qué tan posible
+    son los eventos; a un evento $A\in F$ asociamos $P\left(A\right)$.
+
+    \begin{description}
+        \item[No negatividad]  $P\left(A\right)>0$, $\forall A\in F$
+
+        \item[Aditividad] Si $A\cap B =\emptyset$, entonces $P\left(A\cup B\right)=P\left(A\right)+P\left(B\right)$
+
+        \item[Normalización] $P\left(\Omega\right)=1$
+    \end{description}
+
+    \subsection{Lemas}
+    \label{ssec:lemas}
+
+    \begin{enumerate}[{1. }]
+        \item $P\left(\emptyset\right)=0$
+
+        \textbf{Demostración}
+
+        Por normalización $1-P\left(\Omega\right)=P
+            \left(\Omega\cup\emptyset\right)=P
+            \left(\Omega\right)+P\left(\emptyset\right)=1+P
+            \left(\emptyset\right)\to P\left(\emptyset\right)=0$
+
+        \item $P\left(A\cup B\right) = P\left(A\right)+P\left(B\right) -
+            P\left(A\cap B\right)$
+
+        \textbf{Demostración}
+
+        \begin{equation*}
+        \begin{split}
+            A & = \left(A \cap B\right)\cup\left(A \cap B^{c}\right)\\
+            B & = \left(A \cap B\right)\cup\left(A^{c} \cap B\right)\\
+            P\left(A\right) + P\left(B\right) & = \left(A \cap B\right)+\left(A \cap B^{c}\right) + \left(A \cap B\right) + \left(A^{c} \cap B\right)\\
+            P\left(A\right) + P\left(B\right) - \left(A \cap B\right) & = \left(A \cap B^{c}\right) + \left(A \cap B\right) + \left(A^{c} \cap B\right)\\
+            P\left(A\right) + P\left(B\right) - \left(A \cap B\right) & = P\left(A\cup B\right)\\
+        \end{split}
+        \end{equation*}
+
+        \item $P\left(A\cup B\right)\leq P\left(A\right) + P\left(B\right)$
+
+        \textbf{Demostración}
+
+        Tarea
+
+        \item $P\left(A\cup B\cup C\right) =  P\left(A\right) + P\left(A^{c}\cap B\right) + P\left(A^{c}\cap B^{c}\cap C\right)$
+
+        \textbf{Demostración}
+
+        Tarea
+    \end{enumerate}
+
+    \subsection{Modelos Pobabilísticos Discretos y Continuos}
+    \label{ssec:modelos_pobabilisticos_discretos_y_continuos}
+
+    \begin{description}
+        \item[Modelos Discretos] Cuando $\Omega$ es finito o enumerable.
+            \begin{obs}
+            Si $\Omega$ es finito o enumerable, la función de probabilídad
+                queda totalmente definida por los \textit{singletons}.
+            \end{obs}
+           \subsection{Ley de probabilidad discreta uniforme}
+           \label{ssec:ley_de_probabilidad_discreta_uniforme}
+
+            Si $\Omega$ tiene $n$ elementos, todos igualmente posibles (todos
+            los singletons tiene la misma probabilidad). Entonces $\forall A\in
+            F,A\subseteq\Omega$, $P\left(A\right)=\frac{|A|}{|\Omega|}$
+
+        \item[Modelos Continuos] Cuando $\Omega$ no es enumerable
+            $Ej:\left(\Omega=\mathbb R\right)$.
+            \begin{obs}
+            En este caso los singletons normalmente no son suficientes para
+                definir toda la ley de probabilidad.
+            \end{obs}
+    \end{description}
+
+    \section{05.08.2020 $\mybar$ Probabilidad Condicional}
+    \label{sec:probabilidad_condicional}
+
+    Utilizamos probabilidad condicional cuando queremos sobre posibles
+    resultados del experimento, teniendo alguna información parcial.
+
+    \begin{ej}
+    \begin{itemize}
+    \item Tiro un dado y se que salió par. Queremos calcular la prob. de tener 4.
+
+    \item Una persona sale negativaen un examen medico y queremos sabere la
+        prob. de que si haya enfermedad (falso negativo).
+    \end{itemize}
+    \end{ej}
+
+    Suponiendo que hay un experimento incierto. Sabemos que ocurrió un evento
+    $B$. Queremos determinar la prob. de que ocurrio otro evento $A$.
+
+    \subsubsection{Objetivo}
+    \label{ssec:objetivo}
+
+    Construir una nueva función de prob. que incorpore información que se tiene (acurrio $B$).
+
+    \begin{obs}
+        \begin{enumerate}[{1. }]
+
+            \item La nueva función de prob. debe satisfacer las axiomas.
+
+            \item La nueva función de prob. debe heredar la estructura de la
+                función de prob. original.
+
+        \end{enumerate}
+    \end{obs}
+
+    \subsection{Definición Formal}
+    \label{ssec:definicion_formal}
+
+    Sea $b$ un evento tal que $P\left(B\right)>0$. Se define la prob. condicional de un evento $A$ (condicional al evento $B$) como:
+    \begin{equation*}
+        P\left(A|B\right)=\frac{P\left(A\cap B\right)}{P\left(B\right)}
+    \end{equation*}
+
+    \begin{obs}
+        Si $P\left(B\right)=0$, la probabilidad condicional a $B$ no está definida.
+    \end{obs}
+
+    \subsubsection{Teorema}
+    \label{ssec:teorema}
+
+    Sea $P$ una función de prob. sea $B$ evento tal que $P\left(B\right)>0$. La
+    probabilidad condicinal en $B$ es una ley de probabilidad. (Es decir qu
+    cumple los axiomas de probabilidad).
+
+    \subsubsection{Demostración}
+
+    \begin{itemize}
+        \item $P\left(\Omega|B\right) =\frac{P\left(\Omega\cap
+            B\right)}{P\left(B\right)} =\frac{P\left(B\right)}{P\left(B\right)}
+            = 1$
+
+        \item $A_1,A_2$ eventos disyuntos luego:
+            \begin{equation*}
+            \begin{split}
+                P\left(A_1\cup A_2|B\right) & = \frac{P\left(\left(A_1\cup
+                A_2\right)\cap B\right)}{P\left(B\right)}\\
+                \frac{P\left(A_1\cap B\right)\cup\left(A_2\cap B\right)}{P\left(B\right)} & = \frac{P\left(A_1\cap B\right)}{P\left(B\right)} + \frac{P\left(A_2\cap B\right)}{P\left(B\right)}\\
+                & = P\left(A_1|B\right)+P\left(A_2|B\right)
+            \end{split}
+            \end{equation*}
+        \item Sea $A$ un evento.
+            \begin{equation*}
+               P\left(A|B\right) = \frac{P\left(A\cap B\right)}{P\left(B\right)}\leq 0
+            \end{equation*}
+    \end{itemize}
+
+    Es decir $P\left(°|B\right)$ es una ley de probabilidad. $\blacksquare$
+
+
+    \subsubsection{Corolario}
+    \label{ssec:corolario}
+
+    Las propiedades de las funciones de probabilidad tambien se cumplen para la
+    probabilidad condicional.
+
+    \begin{ej}
+        \begin{itemize}
+            \item $A_1,A_2$ eventos: $A_1\leq A_2\to P\left(A_1|B\right)\leq
+                P\left(A_2|B\right)$
+
+            \item $P\left(A_1\cup A_2|B\right) = P\left(A_1|B\right) +
+                P\left(A_1|B\right) - P\left(A_1\cap A_2\right)$
+        \end{itemize}
+
+    \end{ej}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    \end{chapter}
 
     % ====| E N D    O F    W O R K    S P A C E |==== %
 

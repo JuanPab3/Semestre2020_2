@@ -1,2 +1,8 @@
 \boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
 \babel@toc {spanish}{}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {1}Primer Semestre}{5}{chapter.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {1.1}04.08.2020 $\kern 1pt\rule [-\dp \strutbox ]{.8pt}{\baselineskip }\kern 1pt$ Sistemas Manejadores de Bases de Datos}{5}{section.1.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {1.1.1}Conceptos Importantes}{5}{subsection.1.1.1}%
