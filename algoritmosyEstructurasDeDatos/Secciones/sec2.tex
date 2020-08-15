@@ -1,0 +1,276 @@
+\documentclass[usenames,dvipsnames]{beamer}
+
+\usepackage{transparent}
+\usepackage{graphicx}   %Use Images
+\usepackage{pdfpages}
+\usepackage{xifthen}
+\usepackage{xcolor}
+\usepackage{import}
+\usepackage{tikz}
+\usepackage{tipa}
+\usepackage{cgloss4e}
+\usepackage{qtree}
+\usepackage{enumerate}
+\usepackage{longtable}
+\usepackage{textgreek}
+\usepackage{parskip}
+\usepackage{xpatch}
+
+\makeatletter
+\patchcmd\beamer@@tmpl@frametitle{\insertframetitle}{\insertsection-\insertframetitle}{}{}
+\makeatother
+
+\usetheme{Antibes}
+\usecolortheme{dove}
+\setbeamertemplate{frametitle}[default][center]
+\setlength{\parskip}{12pt}
+
+\AtBeginSection[]
+{
+ \begin{frame}<beamer>
+ \frametitle{Plan de Acción}
+ \tableofcontents[currentsection]
+ \end{frame}
+}
+
+\title{Monitoria \(Sesi\text{ó}n_{\color{olive}{2.0}}\)}
+\subtitle{Algoritmos y Estructuras de Datos}
+\author{Juan Pablo Sierra Useche}
+\institute{Universidad del Rosario}
+\date{15.08.2020}
+
+
+
+% - New figure
+\newcommand{\incfig}[2][1]{
+    \def\svgwidth{#1\columnwidth}
+    \import{./figures/}{#2.pdf_tex}
+}
+
+\begin{document}
+
+\begin{frame}
+\maketitle
+\end{frame}
+
+
+\section{Antes de empezar con lo bueno\ldots}
+\label{sec:sec0}
+\begin{frame}
+\begin{alertblock}{{\color{red}TODO:}}\pause
+    \begin{enumerate}[{1) }]
+        \item Leer bien el problema.\pause
+        \item Separar las instrucciones.\pause
+        \item Desarrollarlas por separado.\pause
+        \item Únificar.\pause
+        \item Probar y corregir errores.\pause
+        \item \textbf{Disfrutarlo}\ldots Eres lo máximo por haber solucionado el problema.
+    \end{enumerate}
+\end{alertblock}
+\end{frame}
+
+
+\section{Stacks}
+\label{sec:1}
+\begin{frame}
+\label{fr:ej1}
+\frametitle{Ejercicio 1}
+\only<1>{
+    \begin{block}{{\color{blue}instrucciones:}}
+        Escriba un programa que lea una secuencia de caracteres y los imprima
+        en orden inverso. Para esto use un \textbf{stack} de caracteres.
+    \end{block}
+}
+\only<2>{
+    \begin{block}{{\color{blue}instrucciones:}}
+        {\color{pink}Escriba un programa que lea una secuencia de caracteres y
+        los imprima en orden inverso}. Para esto use un \textbf{stack} de
+        caracteres.
+    \end{block}
+}
+\only<3>{
+    \begin{block}{{\color{blue}instrucciones:}}
+        Escriba un programa que lea una secuencia de caracteres y los imprima
+        en orden inverso.{\color{olive} Para esto use un \textbf{stack} de
+        caracteres.}
+    \end{block}
+}
+\only<4>{
+\begin{block}{\color{violet}PA' LOS HARDCORE}
+    Hacer un programa que \textbf{lea un archivo} y utilice el programa
+    anterior, para imprimir cada palabra del texto al reves \textbf{de forma
+    individual}.
+\end{block}
+}
+\end{frame}
+
+\begin{frame}
+\label{fr:ej2}
+\frametitle{Ejercicio 2}
+\only<1>{
+\begin{block}{{\color{blue}instrucciones:}}
+    escriba un programa que reciba un \textbf{stack} de numeros enteros
+    arbitrarios y que retorne el mismo stack pero donde solo los elementos que
+    son menores a los elementos anteriores permanezcan en el \textbf{stack}.
+    \begin{center}
+        {\color{orange} [}10,8,11,4,7,2,1{\color{orange} ]} \(\to\) {\color{orange} [}10,8,4,2,1{\color{orange} ]}
+    \end{center}
+\end{block}
+}
+\only<2>{
+\begin{block}{{\color{blue}instrucciones:}}
+    Escriba un programa que reciba un \textbf{stack} de numeros enteros
+    arbitrarios y que retorne el mismo stack pero donde solo los elementos que
+    son menores a los elementos anteriores permanezcan en el \textbf{stack}.
+    \begin{center}
+        {\color{orange} [}10,8,{\color{red}11},4,{\color{red}7},2,1{\color{orange} ]} \(\to\) {\color{orange} [}10,8,4,2,1{\color{orange} ]}
+    \end{center}
+\end{block}
+}
+\end{frame}
+
+
+\section{Queue}
+\label{sec:2}
+\begin{frame}
+\label{fr:ej3}
+\frametitle{Ejercicio 3}
+\only<1>{
+\begin{block}{{\color{blue}instrucciones:}}
+    Usando las operaciones estándar de un \textbf{queue}, escriba un programa
+    que elimina el elemento medio de una cola de números de doble precisión.
+\end{block}
+}
+\only<2>{
+\begin{block}{{\color{blue}instrucciones:}}
+Usando las operaciones estándar de un \textbf{queue}, escriba un programa que {\color{olive}elimina el elemento medio de una cola de números de doble precisión.}
+\end{block}
+}
+\only<3>{
+\begin{block}{{\color{blue}instrucciones:}}
+    Usando las operaciones estándar de un \textbf{queue}, escriba un programa que elimina el elemento medio de una cola de números de doble precisión.
+\end{block}
+}
+\only<4>{
+\begin{block}{{\color{blue}instrucciones:}}
+    {\color{teal}Usando las operaciones estándar} de un \textbf{queue}, escriba
+    un programa que elimina el elemento medio de una cola de números de doble
+    precisión.
+\end{block}
+}
+\only<5>{
+\begin{block}{\color{violet}PÆ' L05 QU3 T€NG4N G@Na5 D +}
+    Modificar el programa para que retorne un \textbf{queue} con el elemento de
+    la mitad en la primera posición.
+\end{block}
+}
+\end{frame}
+\begin{frame}
+\label{fr:ej4}
+\frametitle{Ejercicio 4}
+\only<1>{
+\begin{block}{{\color{blue}instrucciones:}}
+    En el banco de Chía ubicado en el centro comercial más concurrido del
+municipio tienen el problema de que la gente suele colarse muy seguido, para
+solucionar esté problema licitaron con varios grupos de expertos en estructuras
+de datos; de todos ellos escogieron dos: el primero debe entregar un algoritmo
+que al conectarse con las cámaras clasifique con un número impar a aquellos que
+se hayan colado, y el segundo grupo debe encargarse de reconocer la posición de
+aquellos que se colaron (para que así el guardia los detecte) y además los debe
+sacar de la estructura de datos. Como estamos en pandemia y la Universidad no
+nos puede prestar las camaras para probar el primer algoritmo se nos encargo
+hacer el segundo.  \end{block}
+}
+\end{frame}
+
+
+\section{Mi quiz del semestre pasado.}
+\begin{frame}
+\label{fr:ej5}
+\frametitle{Ejercicio 5}
+\only<1>{
+\begin{block}{{\color{blue}instrucciones:}}
+    Escriba la función:
+    \begin{center}
+        {\color{orange}int}
+        howMany({\color{orange}list}\(<\){\color{orange}int}\(>\)
+        L,{\color{orange}int} k)
+    \end{center}
+    que recibe una lista de enteros \textbf{L} y un entero \textbf{k}. Mediante
+    un ciclo \textbf{while}, la función debe encontrar el número de veces que
+    se encuentra \textbf{k} en \textbf{L} y retornar esta cantidad. Puede
+    modificar la lista si lo considera necesario.
+}
+\only<2>{
+\begin{block}{{\color{blue}instrucciones:}}
+    Escriba la función:
+    \begin{center}
+        {\color{orange}int}
+        howMany({\color{orange}list}\(<\){\color{orange}int}\(>\)
+        L,{\color{orange}int} k)
+    \end{center}
+    que {\color{brown}recibe una lista de enteros \textbf{L} y un entero \textbf{k}.} Mediante
+    un ciclo \textbf{while}, la función debe encontrar el número de veces que
+    se encuentra \textbf{k} en \textbf{L} y retornar esta cantidad. Puede
+    modificar la lista si lo considera necesario.
+}
+\only<3>{
+\begin{block}{{\color{blue}instrucciones:}}
+    Escriba la función:
+    \begin{center}
+        {\color{orange}int}
+        howMany({\color{orange}list}\(<\){\color{orange}int}\(>\)
+        L,{\color{orange}int} k)
+    \end{center}
+    que recibe una lista de enteros \textbf{L} y un entero \textbf{k}. {\color{cyan}Mediante
+    un ciclo \textbf{while}}, la función debe encontrar el número de veces que
+    se encuentra \textbf{k} en \textbf{L} y retornar esta cantidad. Puede
+    modificar la lista si lo considera necesario.
+}
+\only<4>{
+\begin{block}{{\color{blue}instrucciones:}}
+    Escriba la función:
+    \begin{center}
+        {\color{orange}int}
+        howMany({\color{orange}list}\(<\){\color{orange}int}\(>\)
+        L,{\color{orange}int} k)
+    \end{center}
+    que recibe una lista de enteros \textbf{L} y un entero \textbf{k}. Mediante
+    un ciclo \textbf{while}, {\color{magenta}la función debe encontrar el
+    número de veces que se encuentra \textbf{k} en \textbf{L} y retornar esta
+    cantidad}. Puede modificar la lista si lo considera necesario.
+}
+\only<5>{
+\begin{block}{{\color{blue}instrucciones:}}
+    Escriba la función:
+    \begin{center}
+        {\color{orange}int}
+        howMany({\color{orange}list}\(<\){\color{orange}int}\(>\)
+        L,{\color{orange}int} k)
+    \end{center}
+    que recibe una lista de enteros \textbf{L} y un entero \textbf{k}. Mediante
+    un ciclo \textbf{while}, la función debe encontrar el número de veces que
+    se encuentra \textbf{k} en \textbf{L} y retornar esta cantidad. {\color{green}Puede
+    modificar la lista si lo considera necesario.}
+}
+\end{block}
+\end{frame}
+
+
+\section{Ñapa\ldots}
+\label{sec:extra}
+
+\begin{frame}
+\frametitle{\ldots}
+
+\begin{figure}[ht]
+    \centering
+    \incfig{cow}
+\end{figure}
+
+\end{frame}
+
+
+
+
+\end{document}

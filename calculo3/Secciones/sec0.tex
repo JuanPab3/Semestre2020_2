@@ -1,0 +1,298 @@
+\documentclass[a4paper]{book}
+
+% ====| P A C K A G E S |==== %
+\usepackage{import}
+%\usepackage[backend=biber, style=authoryear-icomp]{biblatex}    %Bibliography stuff
+%\input{./../../commands.tex}
+\usepackage[margin=1in,includefoot]{geometry}   %Margins
+\usepackage[utf8]{inputenc} %Language stuff
+%\usepackage [latin1]{inputenc}  %Spanish symbols
+\usepackage[spanish]{babel} %Sets document language to spanish
+\usepackage{tcolorbox}  %Frame boxes
+\usepackage{enumerate}  %Lists options
+\usepackage{mfirstuc}   %I use it to capitalize words
+\usepackage{graphicx}   %Use Images
+\usepackage{listings}   %For displaying code
+\usepackage{titlesec}   %Costume titles/sections/...
+\usepackage{hyperref}   %Linking options
+\usepackage{multicol}	%Use column
+\usepackage{amsmath}    %Display equations options
+\usepackage{amssymb}    %More symbols
+\usepackage{titling}    %Use title variables in other places
+\usepackage{xcolor}     %To manage colors
+\usepackage{transparent}%For figures
+\usepackage{pdfpages}   %For figures
+% =========================== %
+
+% ====| P A C K A G E S    S E T T I N G S |==== %
+% \addbibresource{/media/jpi/Data/01_Education/04_bibiografia/bibliography.bib} %<--- Bibliography path
+% ============================================== %
+
+% ====| P E R S O N A L    C O M M A N D S    &    E N V I R O N M E N T S|==== %
+
+% - New figure
+\newcommand{\incfig}[2][1]{%
+    \def\svgwidth{#1\columnwidth}
+    \import{./figures/}{#2.pdf_tex}
+}
+
+\pdfsuppresswarningpagegroup=1
+
+% - New page
+\newcommand{\np}{\null\newpage}
+
+% - new homework
+\newenvironment{tarea}[3]
+    {
+        \null\newpage
+        \begin{tcolorbox}
+            \textbf{\asignatura\ -\ \autor}
+            \subsection{\capitalisewords{#1}}
+            \label{ssec:#1}
+            \begin{flushright}
+            \textbf{Desde:}  #2 \
+            \textbf{Hasta:}  #3 \
+            \end{flushright}
+        \end{tcolorbox}
+
+    \begin{enumerate}[{Ejercicio} 1.]
+    }
+    {
+        \end{enumerate}
+        \np
+    }
+
+% - new observation
+\newenvironment{obs}
+    {
+        \begin{flushleft}
+       \textbf{Observación}\
+        \line(1,0){200} \
+        \end{flushleft}
+    }
+    {
+        \begin{flushright}
+        \line(1,0){200}
+        \end{flushright}
+    }
+% ============================================================================= %
+\begin{document}
+
+\section{12.08.2020 - Repaso Cálculo 2}
+\label{sec:repaso_calculo_2}
+
+\subsection{Sumas de Riemann con una variable}
+\label{ssec:sumas_de_riemann_con_una_variable}
+
+En matemáticas, la \textbf{suma de Riemann} es un tipo de aproxinación del
+valor de una integralmediante una suma infinita. La suma se calcula dividiendo
+las región en formas (rectángulos, trapezoies, parábolas o cúbicas) que juntas
+forman una región similar a la región que se está midiento, a las cuales se les
+calcula el area para así poder sumarlas (las areas).
+
+\subsubsection{Generalizasión}
+
+\begin{align*}
+    &\Delta x= \frac{b-a}{n},\\
+    \int_{a}^{b}f\left(x\right)dx &= \lim_{n \to \infty}\sum_{k=1}^{n} f\left( a+k\Delta x\right)\Delta x
+.\end{align*}
+
+
+\subsection{Terorema Fundamental del Cálculo}
+\label{ssec:terorema_fundamental_del_calculo}
+
+\subsubsection{Parte I}
+
+Sea \(f\) una función integrable en \(\left[a,b\right]\), y definimos una nueva
+función \(F\) en \(\left[a,b\right]\) por:
+
+\[
+    F\left(x\right) = \int_{a}^{x} f\left(t\right) dt
+.\]
+
+Si \(c \text{ pertenece a }\left[a,b\right] \) y  \(f\) es continua en \(c\), entonces \(F\) es diferenciable en \(c\), y:
+
+\[
+F'\left(c\right)=f\left(c\right)
+.\]
+
+Este \textbf{primera parte del teorema fundamental del cálculo} afirma que
+podemos construir una \textbf{primitiva}\footnote{antíderivada} de cualquier
+función continua por integración. Cuando se combina esto con el hecho de que
+dos primitivas de la misma función son iguales salvo una constante, se obtiene
+el la segunda parte de esté teorema. \footnote{Apostol}
+
+\subsubsection{Parte II}
+Suponiendo que \(f\) es continua en un intervalo abierto \(I\), y sea \(P\) cualqueir primitiva (ina integral indefinida, \(P'=f\)) de de \(f\) en \(I\). Entonces, para cada \(a\) y cada \( b\) en \(I\), se tiene que:
+\[
+\int_{a}^{x} f\left(t\right) dt = P\left(b\right) - P\left(a\right)
+.\]
+
+\subsubsection{Demostración}
+
+Sea:
+\[
+F\left( x \right) =\int_{a}^{x} f\left(t\right) dt
+.\]
+Entonces, por la \textbf{primera parte del teorema}:
+\[
+F'\left(x\right) = f\left( x \right) = P'\left( x \right)
+.\]
+Ya que existe \(C\) constante, se tiene:
+\[
+F\left(x\right)=P\left(x\right)+C
+.\]
+Para poder calcular \(C\) se utiliza:
+\[
+F\left(a\right)=\int_{a}^{a} f\left(t\right) dt = 0 P\left(a\right)+C
+.\]
+\[
+C = -P\left(a\right)
+.\]
+Apartir del caso de \(F\left(x\right)\) se tiene:
+\[
+P\left(x\right) = P\left(x\right) - P\left(a\right)
+.\]
+Ahora si se tiene \(x=b \) la todo lo anterior se puede reflejar de la
+siguiente forma:
+\[
+P\left(b\right) = \int_{a}^{b}f\left(t \right) dt = P\left(b\right) - P\left(a\right)
+.\]
+
+\subsubsection{Conclusión}
+
+Este teorema indica que se puede calcular el valor de una integral definida
+simplemente restando, si conocemos su \textbf{antiderivada}.
+
+
+\subsection{Coordenadas Polares}
+\label{ssec:coordenadas_polares}
+
+Teniendo en cuenta que el plano cartesiano es simplemente una \textbf{útil}
+forma de interpretación de puntos. Pero además de esta, existen otros sistemas de coordenadas, como por ejemplo las \textbf{coordenadas polares}. Pensando a ambos sistemas en terminos de vectores, se pueden encontrar las siguientes distinciones:
+
+\begin{description}
+    \item[Coordenadas cartesianas] las componentes x,y de un vector (en \(\mathbb{R}^{2}\)).
+    \item [Coordenadas polares] la magnitud (longitud) y dirección (ángulo) del vector.
+\end{description}
+
+\begin{figure}[ht]
+    \centering
+    \incfig[0.7]{de-cartesianas-a-polares}
+    \caption{de cartesianas a polares}
+    \label{fig:de-cartesianas-a-polares}
+\end{figure}
+
+Siendo \(\theta\) el ángulo y \(r\) la distancia desde el vertice, la notación
+para las coordenadas polares es: \(\left( \theta,r \right)\) (a diferencia de
+\(\left(x,y\right)\) utilizado en es sistema cartesiano). Para calcular la
+transición de un sistema a otro se tiene:
+
+\[
+\sin\left(\theta\right)=\frac{y}{r}\to y=r\times \sin\left(\theta\right)
+.\]
+\[
+\cos\left(\theta\right) = \frac{x}{r} \to x=r \times\cos\left(\theta\right)
+.\]
+
+
+
+
+
+\subsection{Ecuaciones Parametricas}
+\label{ssec:ecuaciones_parametricas}
+
+Las ecuaciones parampétricas de cualqueir recta \(r\) se obtienen por medio de
+la siguiente expresión:
+\[
+\lambda \in \mathbb{R} \to
+\]
+\[
+\to\left\{
+    \begin{array}{ll}
+        x=&a_1+\lambda \cdot v_1 \\
+        y=&a_2+\lambda \cdot v_2
+    \end{array}
+\right
+.\]
+
+Donde:
+\begin{itemize}
+    \item \(x \text{ e } y\) son las coordenadas de cualquier punto
+        \(P\left(x,y\right)\) de la recta.
+    \item  \(a_1 \text{ y } a_2\) son las coordenadas de un punto conocido de
+        la recta \(A\left(a_1,a_2\right)\).
+    \item \(v_1 \text{ y }v_2\) son las componentes de un vector directo
+        \(\overrightarrow{v}=\left( v_1,v_2\right)\) de \(r\).
+    \item \(\lambda\) es un valor real que determina cada coordenada \(P\left(x,y\right)\) dependiendo del valor que se le asigne.
+
+\end{itemize}
+
+\subsubsection{Explicación}
+
+Cualquier \textbf{recta} \(r\) que se pueda dibujar sobre una hoja de papel puede ser determinada analiticamente por medio de \textbf{punto} \(A\) que forme parte de dicha recta y una dirección que se puede expresar mediante un \textbf{vector no nulo} \(\overrightarrow{v}\).
+
+\subsubsection{Definición de una recta por medio de un punto y un vector}
+
+\begin{figure}[ht]
+    \centering
+    \incfig[0.7]{punto-y-vector}
+    \caption{punto y vector}
+    \label{fig:punto-y-vector}
+\end{figure}
+
+Como se observar en la figura \ref{fig:punto-y-vector}, \(r\) se trata de una recta que pasa por el punto \(A\) y cuya dirección vine dada por el \(\overrightarrow{v}\).
+
+El vector encargado de determinar la dirección de la recta recibe el nombre de
+\textbf{vector director} el cual no es único, ya que cualquier vector paralelo
+a este sirve de igual forma para determinar la dirección de \(r\). Por lo tanto
+si \(\overrightarrow{v}\) es un vector director de la recta r, también lo será
+cualquier múltiplo de \(\overrightarrow{v}\left(\lambda \cdot
+\overrightarrow{v}|\lambda \in\mathbb{R}1\right) \)
+
+\subsubsection{De parametricas a \(\left(x,y\right)\)}
+
+Teniendo en cuenta la ecuación vectorial de la recta, si \(A\left(a_1,a_2\right)\) es un punto conocido de una recta \(r\) que posee un vector director \(\overrightarrow{v}=\left( v_1,v_2 \right)\) y \(P\left(x,y\right)\) un punto cualquiera se sabe que:
+\[
+\left(x,y\right) =\left(a_1,a_2\right) + \lambda \left( v_1,v_2\right), \lambda \in\mathbb{R}
+.\]
+\[
+\left(x,y\right) =\left(a_1+ \lambda v_1,a_2 + \lambda v_2\right), \lambda \in\mathbb{R}
+.\]
+
+Por lo que se puede concluir la suposición inicial.
+\[
+\lambda \in \mathbb{R} \to
+\]
+\[
+\to\left\{
+    \begin{array}{ll}
+        x=&a_1+\lambda \cdot v_1 \\
+        y=&a_2+\lambda \cdot v_2
+    \end{array}
+\right
+.\]
+
+
+
+
+\subsection{Límite para dos variables por definición}
+\label{ssec:limite_para_dos_variables_por_definicion}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

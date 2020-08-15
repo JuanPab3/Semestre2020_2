@@ -1,0 +1,205 @@
+\documentclass[a4paper]{book}
+
+% ====| P A C K A G E S |==== %
+\usepackage{import}
+%\usepackage[backend=biber, style=authoryear-icomp]{biblatex}    %Bibliography stuff
+%\input{./../../commands.tex}
+\usepackage[margin=1in,includefoot]{geometry}   %Margins
+\usepackage[utf8]{inputenc} %Language stuff
+%\usepackage [latin1]{inputenc}  %Spanish symbols
+\usepackage[spanish]{babel} %Sets document language to spanish
+\usepackage{tcolorbox}  %Frame boxes
+\usepackage{enumerate}  %Lists options
+\usepackage{mfirstuc}   %I use it to capitalize words
+\usepackage{graphicx}   %Use Images
+\usepackage{listings}   %For displaying code
+\usepackage{titlesec}   %Costume titles/sections/...
+\usepackage{hyperref}   %Linking options
+\usepackage{multicol}	%Use column
+\usepackage{amsmath}    %Display equations options
+\usepackage{amssymb}    %More symbols
+\usepackage{titling}    %Use title variables in other places
+\usepackage{xcolor}     %To manage colors
+\usepackage{transparent}%For figures
+\usepackage{pdfpages}   %For figures
+% =========================== %
+
+% ====| P A C K A G E S    S E T T I N G S |==== %
+% \addbibresource{/media/jpi/Data/01_Education/04_bibiografia/bibliography.bib} %<--- Bibliography path
+% ============================================== %
+
+% ====| P E R S O N A L    C O M M A N D S    &    E N V I R O N M E N T S|==== %
+
+% - New figure
+\newcommand{\incfig}[2][1]{%
+    \def\svgwidth{#1\columnwidth}
+    \import{./figures/}{#2.pdf_tex}
+}
+
+\pdfsuppresswarningpagegroup=1
+
+% - New page
+\newcommand{\np}{\null\newpage}
+
+% - new homework
+\newenvironment{tarea}[3]
+    {
+        \null\newpage
+        \begin{tcolorbox}
+            \textbf{\asignatura\ -\ \autor}
+            \subsection{\capitalisewords{#1}}
+            \label{ssec:#1}
+            \begin{flushright}
+            \textbf{Desde:}  #2 \
+            \textbf{Hasta:}  #3 \
+            \end{flushright}
+        \end{tcolorbox}
+
+    \begin{enumerate}[{Ejercicio} 1.]
+    }
+    {
+        \end{enumerate}
+        \np
+    }
+
+% - new observation
+\newenvironment{obs}
+    {
+        \begin{flushleft}
+       \textbf{Observación}\
+        \line(1,0){200} \
+        \end{flushleft}
+    }
+    {
+        \begin{flushright}
+        \line(1,0){200}
+        \end{flushright}
+    }
+% ============================================================================= %
+
+\begin{document}
+\section{13.08.2020 - Caminos y Ciclos}
+\label{sec:caminos_y_ciclos}
+
+\subsection{Caminata}
+\label{ssec:caminata}
+
+Una \textbf{caminata (walk)} en un grafo \(G\) es una lista:
+\[
+v_0e_1v_{1}\ldots e_{k}v_{k}
+.\]
+ de vértices y aristas tal que para todo \(1\le 1 \le k\) la aarista \(e_{i}\)
+ tiene extremos \(v_{i-1}\) y \(v_{i}\).
+
+\subsection{Sendero}
+\label{ssec:sendero}
+
+Un \textbf{sendero (trail)} es una caminata sin aristas repetidas.
+
+\subsection{u,v-caminata}
+\label{ssec:u_v_caminata}
+
+Una u,v-caminata tiene primer vértice u u último vértice v. estos dos son sus
+\textbf{extremos}. Los otros vértices son \textbf{vértices internos}.
+Análogamente se define un u,v-\textbf{sendero}.
+
+\subsection{Camino}
+\label{ssec:camino}
+
+Un \textbf{camino} es un sendero sin vértices repetidos. Análogamente se define
+un u,v-\textbf{camino}.
+
+\subsection{Circuito}
+\label{ssec:circuito}
+
+Una caminata es \textbf{cerrada} si sus extremos son iguales. Un \textbf{circuito} es un sendero cerrado.
+
+\subsection{Ciclo}
+\label{ssec:ciclo}
+
+Un \textbf{ciclo} es un camino cerrado.
+
+\subsection{Longitud}
+\label{ssec:longitud}
+
+La \textbf{longitud} de una caminata, sendero, camino o ciclo es el número de aristas
+que la conforman.
+
+\begin{obs}
+    \begin{itemize}
+        \item Un bucle es un ciclo de longitud 1.
+        \item Un ciclo de longitud 2 genera aristas paralelas.
+        \item Se \(G\) es un grafo simple la cominata, sendero, circuito,
+            camino o ciclo únicamente elista los vértices.
+    \end{itemize}
+\end{obs}
+
+\begin{obs}
+    ¿Si se sigue un u,v-camino y un v,w-camino, el resultado es un u,w-camino?
+\begin{figure}[ht]
+    \centering
+    \incfig[0.5]{grafo}
+\end{figure}
+\begin{itemize}
+    \item \(a-x-v\) y \(v-y-u-x-b\)
+\end{itemize}
+\end{obs}
+
+\subsection{Lema}
+
+Cada u,v-caminata contiene un u,v-camino.
+
+\subsubsection{Demostración (Inducción fuerte sobre longitud de la caminata)}
+\label{ssec:demostracion_induccion_fuerte_sobre_longitud_de_la_caminata_}
+
+\begin{enumerate}[{P}]
+    \item Base: u,v caminata de longitud 1, entonces es u,v-camino.
+    \item Inductivo: Cualquier ccaminata con lingitud menor o igual a \(n\) contiene un camino. Sea u,v-caminata de longitud \(n+1\). Si ya es un camino perfecto. Pero si no lo es, existe al menos un vertice interno n¿\(w\) que se repite, luego considere la u,v-caminata excluyendo las aristas entre las dos apariciones u,vcaminata excluyendo las arista entre lasss dos apariciones de w. Está nueva caminata tiene longitud menor o igual que \(\left(n+1\right)=n\) \ldots \textbf{S C R E E N S H O T}
+\end{enumerate}
+
+\subsection{Grafo Conexo}
+\label{ssec:grafo_conexo}
+
+\begin{itemize}
+    \item Un grafo \(G\) es \textbf{conexo} si existe un u,v-camino entre cada
+        par \(uv\in V\left( G \right)\). En otro caso es \textbf{disconexo}.
+    \item  Si \(G\) tiene un u,v-camino entonces u está \textbf{conectado} con
+        v.
+\end{itemize}
+
+\subsection{Relación de conexión}
+\label{ssec:relacion_de_conexion}
+
+La \textbf{relación de conexión} en \(V\left(G\right)\) consiste en todos los pares ordenados \(\left(u,v \right)\) tales que \(u\) está conectado con \(v\):
+\[
+uRv\text{ sii existe un, u,v-camino.}
+.\]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

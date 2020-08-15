@@ -1,0 +1,128 @@
+\documentclass[a4paper]{book}
+
+% ====| P A C K A G E S |==== %
+\usepackage{import}
+%\usepackage[backend=biber, style=authoryear-icomp]{biblatex}    %Bibliography stuff
+%\input{./../../commands.tex}
+\usepackage[margin=1in,includefoot]{geometry}   %Margins
+\usepackage[utf8]{inputenc} %Language stuff
+%\usepackage [latin1]{inputenc}  %Spanish symbols
+\usepackage[spanish]{babel} %Sets document language to spanish
+\usepackage{tcolorbox}  %Frame boxes
+\usepackage{enumerate}  %Lists options
+\usepackage{mfirstuc}   %I use it to capitalize words
+\usepackage{graphicx}   %Use Images
+\usepackage{listings}   %For displaying code
+\usepackage{titlesec}   %Costume titles/sections/...
+\usepackage{hyperref}   %Linking options
+\usepackage{multicol}	%Use column
+\usepackage{amsmath}    %Display equations options
+\usepackage{amssymb}    %More symbols
+\usepackage{titling}    %Use title variables in other places
+\usepackage{xcolor}     %To manage colors
+\usepackage{transparent}%For figures
+\usepackage{pdfpages}   %For figures
+% =========================== %
+
+% ====| P A C K A G E S    S E T T I N G S |==== %
+% \addbibresource{/media/jpi/Data/01_Education/04_bibiografia/bibliography.bib} %<--- Bibliography path
+% ============================================== %
+
+% ====| P E R S O N A L    C O M M A N D S    &    E N V I R O N M E N T S|==== %
+
+% - New figure
+\newcommand{\incfig}[2][1]{%
+    \def\svgwidth{#1\columnwidth}
+    \import{./figures/}{#2.pdf_tex}
+}
+
+\pdfsuppresswarningpagegroup=1
+
+% - New page
+\newcommand{\np}{\null\newpage}
+
+% - new homework
+\newenvironment{tarea}[3]
+    {
+        \null\newpage
+        \begin{tcolorbox}
+            \textbf{\asignatura\ -\ \autor}
+            \subsection{\capitalisewords{#1}}
+            \label{ssec:#1}
+            \begin{flushright}
+            \textbf{Desde:}  #2 \
+            \textbf{Hasta:}  #3 \
+            \end{flushright}
+        \end{tcolorbox}
+
+    \begin{enumerate}[{Ejercicio} 1.]
+    }
+    {
+        \end{enumerate}
+        \np
+    }
+
+% - new observation
+\newenvironment{obs}
+    {
+        \begin{flushleft}
+       \textbf{Observación}\
+        \line(1,0){200} \
+        \end{flushleft}
+    }
+    {
+        \begin{flushright}
+        \line(1,0){200}
+        \end{flushright}
+    }
+% ============================================================================= %
+\begin{document}
+
+\section{13.08.2020 - Equivalencia NFAs y DFAs}
+\label{sec:equivalencia_nfas_y_dfas}
+
+\subsection{Teorema}
+
+Para cada \textbf{DFA} \(M\) existe un \textbf{NFA} \(N\) talque \(L\left(N\right)=L\left(M\right)\).
+\begin{figure}[ht]
+    \centering
+    \incfig{equivalencia}
+    \label{fig:equivalencia}
+\end{figure}
+
+\subsubsection{Demostración}
+
+\begin{itemize}
+    \item \textbf{Caso 1/2}
+        Sea \(N=\left(Q,\Sigma,\delta q_0,F\right)\) un \textbf{NFA} para el
+        que no haya ningúna transición \(\epsilon \). Sefinimos
+        \(M=\left(Q',\Sigma',\delta'q_0',F' \right) \) en \textbf{DFA} de la
+        siguiente manera:
+
+        \begin{itemize}
+            \item \(Q'=\varphi\left( Q \right) \)
+            \item \(\Sigma=\Sigma\)
+            \item \(q_0'=\left\{q_0\right\}\)
+            \item \(F'=\left\{ R\in Q'': R \text{ contiene un estado final de } N \right\} \)
+        \end{itemize}
+
+
+\end{itemize}
+
+\subsection{Clausura bajo operaciones regulares}
+\label{ssec:clausura_bajo_operaciones_regulares}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

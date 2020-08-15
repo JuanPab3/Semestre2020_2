@@ -1,0 +1,365 @@
+\documentclass[a4paper]{book}
+
+% ====| P A C K A G E S |==== %
+\usepackage{import}
+%\usepackage[backend=biber, style=authoryear-icomp]{biblatex}    %Bibliography stuff
+%\input{./../../commands.tex}
+\usepackage[margin=1in,includefoot]{geometry}   %Margins
+\usepackage[utf8]{inputenc} %Language stuff
+%\usepackage [latin1]{inputenc}  %Spanish symbols
+\usepackage[spanish]{babel} %Sets document language to spanish
+\usepackage{tcolorbox}  %Frame boxes
+\usepackage{enumerate}  %Lists options
+\usepackage{mfirstuc}   %I use it to capitalize words
+\usepackage{graphicx}   %Use Images
+\usepackage{listings}   %For displaying code
+\usepackage{titlesec}   %Costume titles/sections/...
+\usepackage{hyperref}   %Linking options
+\usepackage{multicol}	%Use column
+\usepackage{amsmath}    %Display equations options
+\usepackage{amssymb}    %More symbols
+\usepackage{titling}    %Use title variables in other places
+\usepackage{xcolor}     %To manage colors
+\usepackage{transparent}%For figures
+\usepackage{pdfpages}   %For figures
+% =========================== %
+
+% ====| P A C K A G E S    S E T T I N G S |==== %
+% \addbibresource{/media/jpi/Data/01_Education/04_bibiografia/bibliography.bib} %<--- Bibliography path
+% ============================================== %
+
+% ====| P E R S O N A L    C O M M A N D S    &    E N V I R O N M E N T S|==== %
+
+% - New figure
+\newcommand{\incfig}[2][0.7]{%
+    \def\svgwidth{#1\columnwidth}
+    \import{./figures/}{#2.pdf_tex}
+}
+
+\pdfsuppresswarningpagegroup=1
+
+% - New page
+\newcommand{\np}{\null\newpage}
+
+% - new homework
+\newenvironment{tarea}[3]
+    {
+        \null\newpage
+        \begin{tcolorbox}
+            \textbf{\asignatura\ -\ \autor}
+            \subsection{\capitalisewords{#1}}
+            \label{ssec:#1}
+            \begin{flushright}
+            \textbf{Desde:}  #2 \
+            \textbf{Hasta:}  #3 \
+            \end{flushright}
+        \end{tcolorbox}
+
+    \begin{enumerate}[{Ejercicio} 1.]
+    }
+    {
+        \end{enumerate}
+        \np
+    }
+
+% - new observation
+\newenvironment{obs}
+    {
+        \begin{flushleft}
+       \textbf{Observación}\
+        \line(1,0){200} \
+        \end{flushleft}
+    }
+    {
+        \begin{flushright}
+        \line(1,0){200}
+        \end{flushright}
+    }
+% ============================================================================= %
+
+\begin{document}
+
+\section{11.08.2020 - Teorema de Probabilidad Total y Teorema de Bayes}
+\label{sec:teorema_de_probabilidad_total_y_teorema_de_bayes}
+
+\subsubsection{Definic Partición}
+\label{ssec:definicion_de_particion}
+
+Sean \(A_{1},\ldots,A_{n}\) eventos. Decimos que \(A_{1},\ldots,A_{n}\) forman
+una partición de \(\Omega\) si \(\bigcup_{i=1}^{\infty}A_{i}=\Omega\) y
+\(A_{i}\cap A_{j}=\emptyset \forall i\neq j\) donde \(i,j=1,\ldots,n\)
+
+\subsection{Teorema de Probabilidad Total}
+\label{ssec:teorema_de_probabilidad_total}
+
+Sean \(A_{1},\ldots,A_{n}\) eventos disyuntos 2 a 2 que forman una partición de
+\(\Omega \). Suponiendo además que \(P\left( A_{i}>0\right) \), \(i=1,\ldots,n\). Entonces \(\forall B\) eventos \(\left( B\in F \right) \).
+\[
+    P\left( B \right) =\sum_{i=1}^{n} P\left(A_{i}\cap B\right)=\sum_{i=1}^{n} P\left( A_{i} \right) P\left( B|A_{i} \right)
+\]
+\subsubsection{Demostración}
+
+\begin{figure}[ht]
+    \centering
+    \incfig{repgraficaprobtotal}
+    \caption{Representación Gráfica Probabilidad Total}
+    \label{fig:repgraficaprobtotal}
+\end{figure}
+
+\[
+    B=\bigcup_{i=1}^{n}\left( A_{1}\cap B \right) \to P\left(B\right)=\sum_{i=1}^{n} P\left(A_{i}\cap B \right)=\sum_{i=1}^{n} P\left( A_{i} \right) P\left(B|A_{i}\right)
+.\]
+
+\begin{obs}
+    \begin{center}
+    \textbf{Promedio Ponderado}\\
+    P E N D I E N T E
+    \end{center}
+\end{obs}
+
+
+\subsubsection{Interpretación}
+\label{ssec:interpretacion}
+
+\begin{itemize}
+    \item Se puede dividir a \(B\) en los pedazos que caen en casa evento de la
+        partición.
+    \item \(P\left(B \right) \) es un \textbf{promedio ponderaso} de las
+        probabilidades condicionales \(\left( P\left( B|A_{i} \right)  \right)
+        \) donde el peso de ponderación está dado por la probabilidad se cada
+        evento de la partición \(P\left( A_{i} \right) \).
+    \item También se puede interpretar el \textbf{teorema de probabilidad
+        total} secuencialmente.
+\end{itemize}
+
+\subsection{Ejemplos:}
+\label{ssec:ejemplos}
+
+\begin{enumerate}[{Ej.1) }]
+    \item Usted está en un torneo de ajedrez. Donde se enfrenta a un oponente al azar.
+        \begin{itemize}
+            \item La probabilidad de ganarle a la mitad \(G_1\) es de \(0.3\).
+            \item La probabilidad de ganarle a un cuarto \(G_2\) es de \(0.4\).
+            \item La probabilidad de ganarle a un cuarto \(G_3\) es de \(0.5\).
+        \end{itemize}
+
+        ¿Cuál es la probrobabilidad de ganar la partida?
+
+        \begin{itemize}
+            \item \(B:\) ganar partida
+            \item \(A_1:\) Oponente está en el  \(G_1\)
+            \item \(A_2:\) Oponente está en el  \(G_2\)
+            \item \(A_2:\) Oponente está en el  \(G_3\)
+        \end{itemize}
+        \begin{itemize}
+            \item \(P\left(A_1\right)=0.5\)
+            \item \(P\left(A_2\right)=0.25\)
+            \item \(P\left(A_3\right)=0.25\)
+        \end{itemize}
+
+        Por lo tanto:
+
+        \[
+            P\left(B|A_1\right) = 0.3,P\left(B|A_2\right) =0.4,P\left(B|A_3 \right) =0.5
+        ,\]
+        \[
+            P\left(B\right) = P\left(A_1\cap B\right)+P\left(A_2\cap B\right)+P\left(A_3\cap B\right)
+        \]
+        \[
+            =P\left(A_1\right)P\left(B|A_1\right)+P\left(A_2\right)\left(B|A_2\right)+P\left(A_3\right)P\left(B|A_3\right)
+        ,\]
+        \[
+        =0.375
+        .\]
+
+    \item Se tiene un dado just de 4 caras. Si el resultado es \(1\) ó \(2\) se
+        tira una segunda vez.
+
+        ¿Cúal es la probabilidad de que la suma total sea mayor o igual a 4?
+
+        \begin{itemize}
+            \item \(B:\) suma al menos 4.
+            \item \(A_1:\) El primer tiro es 1.
+            \item \(A_2:\) El primer tiro es 2.
+            \item \(A_3:\) El primer tiro es 3 ó 4.
+        \end{itemize}
+
+        \begin{itemize}
+            \item \(P\left(A_1\right)=\frac{1}{4}\)
+            \item \(P\left(A_2\right)=\frac{1}{4}\)
+            \item \(P\left(A_3\right)=\frac{2}{4}=\frac{1}{2}\)
+        \end{itemize}
+
+        \begin{itemize}
+            \item \(P\left(B|A_1\right)=\frac{1}{2}\)
+            \item \(P\left(B|A_2\right)=\frac{3}{4}\)
+            \item \(P\left(B|A_3\right)=\frac{1}{2}\)
+        \end{itemize}
+
+        \[
+            P\left(B\right) = \sum_{i=1}^{3} P\left(B\cap A_{i}\right) = \sum_{i=1}^{3} P\left(A_{i}\right)P\left(B|A_{1}\right) = \frac{1}{4}\left(\frac{1}{2}\right)+\frac{1}{4}\left(\frac{3}{4}\right)+\frac{1}{2}\left( \frac{1}{2} \right)=\frac{9}{16}
+        .\]
+
+\end{enumerate}
+
+\subsection{Teorema de Bayes}
+\label{ssec:teorema_de_bayes}
+
+Sean \(A_1,\ldots,A_{n}\) eventos que forman una partición de \(\Omega \), talque \(P\left(A_{i}\right)>0\), \(i=1,\ldots,n\). Entonces \(\forall B\in F\) \(\left(B\text{ evento}\right) \) tal que \(P\left(B\right)>0\), se tiene que:
+
+\[
+P\left(A_{i}|B\right)=\frac{P\left(B|A_{i}\right)P\left(A_{i}\right)}{P\left(B\right)} = \frac{P\left(A_{i}\right)P\left(B|A_{i}\right)}{\sum_{i=0}^{n} P\left(A_{i}\right)P\left(B|A_{i}\right)}
+.\]
+
+\subsubsection{Demostración}
+
+\[
+    P\left(A_{i}|B\right) = \frac{P\left(A_{i}\cap B\right)}{P\left(B\right)} = \frac{P\left(A_{i}\right)P\left(B|A_{i}\right)}{P\left(B\right)}
+.\]
+
+Que por el \textbf{teorema de probabilidad total}:
+
+\[
+= \frac{P\left(A_{i}\right)P\left(B|A_{i}\right)}{\sum_{i=1}^{n}P\left(B|A_{i}\right)P\left(A_{i}\right) }
+.\]
+
+\subsubsection{Interpretación}
+
+\begin{figure}[pbth!]
+    \centering
+    \incfig{bayes}
+\end{figure}
+
+
+Utilizamos el \textbf{teorema de Bayes} cuando le tiene distintaas causs
+(excluyentes)) que pueden causar un efecto, y visto el efecto se busca
+determinar la probabilidad de las causas.
+
+\subsubsection{Ejercicios:}
+
+\begin{enumerate}[{Ej 1: }]
+    \item \( \)
+\begin{figure}[ht]
+    \centering
+    \incfig{recesion-economica}
+    \caption{recesion economica}
+    \label{fig:recesion-economica}
+\end{figure}
+
+    \item Se observa una mancha en la radiografía de un paciente, por lo tanto se tiene:
+        \begin{itemize}
+            \item \(A_1:\) La mancha es un tumor maligno.
+            \item \(A_2:\) La mancha es un tumor benigno.
+            \item \(A_3:\) La mancha es otra cosa.
+            \item \(B:\) Hay una mancha en la radiografía.
+        \end{itemize}
+
+        Tal que:
+
+        \[
+        P\left( A_{i}|B \right) , i=1,2,3
+        .\]
+        \begin{obs}
+            Se hacer referencia a \(P\left(A_{i}|B\right)\) como las
+            \textbf{probabilidades posteriores} y a \(P\left(A_{i}\right)\)
+            como las \textbf{probabilidades previas}.
+        \end{obs}
+
+    \item Recordando al ejemplo del radar y el avión:
+        \begin{itemize}
+            \item \(A:\) Hay avión.
+            \item \(B:\) Suena la alarma.
+        \end{itemize}
+
+        \begin{itemize}
+            \item \(P\left(A\right)=0.05\to P\left(A^{c}\right)=0.95\)
+            \item \(P\left(B|A\right)=0.99\)
+            \item \(P\left(B|A^{c}\right)=0.1\)
+        \end{itemize}
+
+        Luego:
+
+        \[
+        P\left(A|B\right) = \frac{P\left(A\right)P\left(B|A\right)}{P\left(B\right)}
+    ,\]
+    \[
+    = \frac{P\left(A\right)P\left(B|A \right)}{P\left(A \right)P\left(B|A\right)+P\left(A^{c}\right)P\left(B|A^{c}\right)}
+    ,\]
+    \[
+        =\frac{0.05\left(0.99\right)}{0.5\left(0.99\right)+0.95\left(0.1\right)}=0.3426
+    .\]
+
+    \item Con base en el ejercicio de ajedrez:
+        \begin{itemize}
+           \item \(P\left(A_1\right)=0.5\)
+           \item \(P\left(A_2\right)=0.25\)
+           \item \(P\left(A_3\right)=0.25\)
+        \end{itemize}
+
+        \begin{itemize}
+            \item \(P\left(B|A_1\right)=0.3\)
+            \item \(P\left(B|A_2\right)=0.4\)
+            \item \(P\left(B|A_3\right)=0.5\)
+        \end{itemize}
+
+        Luego:
+
+        \[
+            P\left(A_1|B\right) = \frac{P\left(B|A_1\right)P\left(A_1\right)}{\sum_{i=1}^{n} P\left(B|A_{i}\right)P\left(A_{i}\right)}
+        ,\]
+
+        \[
+        = \frac{0.5\left(0.3\right)}{0.5\left(0.3\right)+0.25\left(0.4\right)+0.25\left(0.5\right)} = 0.4
+        .\]
+
+    \item Probabilidad fasos positivos; suponiendo que existe una enfermedad extraña entonces:
+        \begin{itemize}
+            \item Si el paciente tiene la enfermedad, la prueba sale positiva
+                con probabilidad de 0.95.
+            \item Si el paciente no tiene la enfermedad, la prueba sale
+                negativa con probabilidad de 0.95
+        \end{itemize}
+        \begin{itemize}
+            \item \(A:\) Paciente tiene la enfermedad.
+            \item \(B:\) Prueba positiva.
+        \end{itemize}
+        \begin{itemize}
+            \item \(P\left(A\right)=0.001\)
+            \item \(P\left(A^{c}\right)=0.999\)
+        \end{itemize}
+        \begin{itemize}
+            \item \(P\left(B|A\right)=0.95 \to P\left(B^{c}|A\right)=0.05\)
+            \item \(P\left(B^{c}|A^{c}\right)=0.95\to P\left(B|A^{c}\right)=0.05\)
+        \end{itemize}
+        \[
+        P\left(A|B\right)=\frac{P\left(B|A\right)P\left(A\right) }{P\left(B|A\right)P\left(A\right)+P\left(A^{c}\right)P\left(B|A^{c}\right)}
+        ,\]
+        \[
+        =\frac{0.001\left(0.95\right)}{0.001\left(0.95\right)+0.999\left(0.05\right)}=0.0187
+        .\]
+
+\end{enumerate}
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
+
+
+
+
+
+
+
+
+
+

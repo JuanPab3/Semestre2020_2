@@ -1,0 +1,270 @@
+\documentclass[a4paper]{book}
+
+% ====| P A C K A G E S |==== %
+\usepackage{import}
+%\usepackage[backend=biber, style=authoryear-icomp]{biblatex}    %Bibliography stuff
+%\input{./../../commands.tex}
+\usepackage[margin=1in,includefoot]{geometry}   %Margins
+\usepackage[utf8]{inputenc} %Language stuff
+%\usepackage [latin1]{inputenc}  %Spanish symbols
+\usepackage[spanish]{babel} %Sets document language to spanish
+\usepackage{tcolorbox}  %Frame boxes
+\usepackage{enumerate}  %Lists options
+\usepackage{mfirstuc}   %I use it to capitalize words
+\usepackage{graphicx}   %Use Images
+\usepackage{listings}   %For displaying code
+\usepackage{titlesec}   %Costume titles/sections/...
+\usepackage{hyperref}   %Linking options
+\usepackage{multicol}	%Use column
+\usepackage{amsmath}    %Display equations options
+\usepackage{amssymb}    %More symbols
+\usepackage{titling}    %Use title variables in other places
+\usepackage{xcolor}     %To manage colors
+\usepackage{transparent}%For figures
+\usepackage{pdfpages}   %For figures
+% =========================== %
+
+% ====| P A C K A G E S    S E T T I N G S |==== %
+% \addbibresource{/media/jpi/Data/01_Education/04_bibiografia/bibliography.bib} %<--- Bibliography path
+% ============================================== %
+
+% ====| P E R S O N A L    C O M M A N D S    &    E N V I R O N M E N T S|==== %
+
+% - New figure
+\newcommand{\incfig}[2][1]{%
+    \def\svgwidth{#1\columnwidth}
+    \import{./figures/}{#2.pdf_tex}
+}
+
+\pdfsuppresswarningpagegroup=1
+
+% - New page
+\newcommand{\np}{\null\newpage}
+
+% - new homework
+\newenvironment{tarea}[3]
+    {
+        \null\newpage
+        \begin{tcolorbox}
+            \textbf{\asignatura\ -\ \autor}
+            \subsection{\capitalisewords{#1}}
+            \label{ssec:#1}
+            \begin{flushright}
+            \textbf{Desde:}  #2 \\
+            \textbf{Hasta:}  #3 \\
+            \end{flushright}
+        \end{tcolorbox}
+
+    \begin{enumerate}[{Ejercicio} 1.]
+    }
+    {
+        \end{enumerate}
+        \np
+    }
+
+% - new observation
+\newenvironment{obs}
+    {
+        \begin{flushleft}
+       \textbf{Observación}\\
+        \line(1,0){200} \\
+        \end{flushleft}
+    }
+    {
+        \begin{flushright}
+        \line(1,0){200}
+        \end{flushright}
+    }
+
+
+% ============================================================================= %
+
+
+
+\begin{document}
+
+\section{11.08.2020 - Isomorfismos de Grafos}
+\label{sec:isomorfismos_de_grafos}
+
+\subsection{Definición Isomorfismos}
+\label{ssec:definicion_isomorfismos}
+
+Sean \(G\ y\ H\) grafos simples. Un \textbf{isomorfismo} de \(G\) a \(H\) es
+una función biyectiva \(f:V\left(G\right)\to V\left(H\right) \) tal que \(uv\in
+E\left(G\right)\iff f\left(u\right) f\left(v\right) \in E\left(H\right) \)
+
+\subsection{Grafos Isomorfos}
+\label{ssec:grafos_isomorfos}
+
+\(G\) es \textbf{isomorfo} a \(H\) si existe un isomorfismo de \(G\ a\ H\). Se nota \(G\cong H\).
+
+\begin{figure}[ht]
+    \centering
+    \incfig{dos-grafos-isomorfos}
+    \caption{dos grafos isomorfos}
+    \label{fig:dos-grafos-isomorfos}
+\end{figure}
+
+\subsection{Ivariante}
+\label{ssec:ivariante}
+
+Un \textbf{invariante} de un grafo es una propiedad \(P\) preservada por
+isomorfismos. De forma más precisa, \(P\) es una invariante si siempre que
+\(G\cong H\):
+
+\begin{center}
+    Si \(G\) satisfacea \(P\) entonces \(H\) satisface \(P\).
+\end{center}
+
+\begin{figure}[ht]
+    \centering
+    \incfig[0.5]{ejemplo2-isomorfismo}
+    \caption{ejemplo2 isomorfismo}
+    \label{fig:ejemplo2-isomorfismo}
+\end{figure}
+
+\begin{obs}
+    Sea \(P\) es una propiedad invariante, si \(G\) satisface \(P\) y \(H\) no
+    satisface \(P\) entonces \(G\cong H\).
+\end{obs}
+
+\subsection{Teorema}
+\label{ssec:teorema}
+
+La relación de isomorfidmo es una relación de equivalencia en el conjunto de
+grafos simples.
+
+\begin{itemize}
+    \item Reflexiva: \(G\cong G\).
+    \item Simétrica: Si \(G\cong H\), entonces \(H\cong G\).
+    \item Transitiva: Si \(G\cong H\) y \(H\cong J\), entonces \(G\cong J\).
+\end{itemize}
+
+\subsection{Clases de isomorfismos}
+\label{ssec:clases_de_isomorfismos}
+
+\subsubsection{Ejemplos}
+\label{ssec:ejemplos}
+
+Una \textbf{clase de isomorfismo} de un grafo es una clase de equivalencia de
+grafos bajo la relación de isomofismos.
+
+\begin{itemize}
+    \item Todos los caminos de \(n\) vértices son insomorfismos.
+    \item El conjunto de todos los caminos de \(n\) vértices forma una clase
+        dde isomorfismo.
+\end{itemize}
+
+\subsection{Grafos sin etiquetas}
+\label{ssec:grafos_sin_etiquetas}
+
+Un \textbf{grafo sin etiquetas} es una  clase de isomorfismo.
+
+\subsection{\(P_{n}\)}
+\label{ssec:pn}
+
+\textbf{Camino} \(P_{n}\) :comino con \(n\) vértices.
+
+\subsection{\(C_{n}\)}
+\label{ssec:cn}
+
+\textbf{Ciclo} \(C_{n}\) :Ciclo con \(n\) vértices (n-ciclo).
+
+\subsection{\(W_{n}\)}
+\label{ssec:wn}
+
+\textbf{Rueda} \(W_{n}\) : Ciclo \(C_{n}\) con vértice adicional adyacente a
+todos los vertices del ciclo.
+
+\subsection{\(K_{n}\)}
+\label{ssec:kn}
+
+\textbf{Grafo completo} \(K_{n}\) : Grafo simple con n vértices que contiene
+exactamente una arista entre cada par de vértices. (Vértices adyacentes 2 a 2)
+
+\subsection{\(K_{m,n}\)}
+\label{ssec:kmn}
+
+\textbf{Grafo bipartito completo} \(K_{m,n}\) : Grafo bipartito simple tal que dos vértices son adyacentes sii están en conjuntos partitos diferentes de tamaño \(m\) y \(n\) respectivamente. (\textbf{biclique}).
+
+\subsection{Ejemplo - Grafos de n vértices}
+\label{ssec:ejemplo_grafos_de_n_vertices}
+
+\begin{itemize}
+    \item Si \(|V\left( G \right)|=n \) entonce se puede seleccionar
+        \({n}\choose{2}\) parejas de vértices.
+    \item El par podría formar una arista o no.
+    \item Entonces ha \(2^{{n}\choose{2}}\) grafos simples de  \(n\) vértices. (Subconjuntos del conjunto de pares de vértices).
+    \item Si \(n=4\), hay 64 grafos simples de 4 vértices.
+        \item Hay 11 clases de isomorfismos.
+\end{itemize}
+
+\subsection{Grafo Autocomplementario}
+\label{ssec:grafo_autocomplementario}
+
+\begin{figure}[ht]
+    \centering
+    \incfig[0.5]{grafos-autocomplementarios}
+    \caption{grafos autocomplementarios}
+    \label{fig:grafos-autocomplementarios}
+\end{figure}
+
+Un grafo \(G\) es autocomplementario si es isomorfo a su complemento.
+
+\subsection{Descomposicón}
+\label{ssec:descomposicon}
+
+Una \textbf{descomposició} de un grafo \(G\) es una lista de subgrafos
+\(H_{i}\subset G\) tal que cada arista \(e\in E\left(G\right)\) pertenece
+exactamente a un subgrafo de la lista.
+
+\subsection{Ejercicio}
+Un grafo \(K_{i,n-1} \text{ y } K_{n-1}\) forma una descomposición de \(K_{n}\).
+
+\subsubsection{Demostración}
+
+\(\ldots\)
+
+\subsection{Teorema}
+
+Un grafo \(G\) de \(n\) vértices es autocomplementario sii \(K_{n}\) tiene una
+descomposición que cnsiste en dos copias de \(G\). (Grafos isomorfos con \(G\)
+).
+
+\begin{figure}[ht]
+    \centering
+    \incfig[0.5]{descomposicion-de-k5}
+    \caption{descomposición de k5}
+    \label{fig:descomposición-de-k5}
+\end{figure}
+
+
+\subsection{Grafo de Petersen}
+\label{ssec:grafo_de_petersen}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

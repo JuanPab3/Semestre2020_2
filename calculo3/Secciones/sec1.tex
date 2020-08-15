@@ -1,0 +1,141 @@
+\documentclass[a4paper]{book}
+
+% ====| P A C K A G E S |==== %
+\usepackage{import}
+%\usepackage[backend=biber, style=authoryear-icomp]{biblatex}    %Bibliography stuff
+%\input{./../../commands.tex}
+\usepackage[margin=1in,includefoot]{geometry}   %Margins
+\usepackage[utf8]{inputenc} %Language stuff
+%\usepackage [latin1]{inputenc}  %Spanish symbols
+\usepackage[spanish]{babel} %Sets document language to spanish
+\usepackage{tcolorbox}  %Frame boxes
+\usepackage{enumerate}  %Lists options
+\usepackage{mfirstuc}   %I use it to capitalize words
+\usepackage{graphicx}   %Use Images
+\usepackage{listings}   %For displaying code
+\usepackage{titlesec}   %Costume titles/sections/...
+\usepackage{hyperref}   %Linking options
+\usepackage{multicol}	%Use column
+\usepackage{amsmath}    %Display equations options
+\usepackage{amssymb}    %More symbols
+\usepackage{titling}    %Use title variables in other places
+\usepackage{xcolor}     %To manage colors
+\usepackage{transparent}%For figures
+\usepackage{pdfpages}   %For figures
+% =========================== %
+
+% ====| P A C K A G E S    S E T T I N G S |==== %
+% \addbibresource{/media/jpi/Data/01_Education/04_bibiografia/bibliography.bib} %<--- Bibliography path
+% ============================================== %
+
+% ====| P E R S O N A L    C O M M A N D S    &    E N V I R O N M E N T S|==== %
+
+% - New figure
+\newcommand{\incfig}[2][1]{%
+    \def\svgwidth{#1\columnwidth}
+    \import{./figures/}{#2.pdf_tex}
+}
+
+\pdfsuppresswarningpagegroup=1
+
+% - New page
+\newcommand{\np}{\null\newpage}
+
+% - new homework
+\newenvironment{tarea}[3]
+    {
+        \null\newpage
+        \begin{tcolorbox}
+            \textbf{\asignatura\ -\ \autor}
+            \subsection{\capitalisewords{#1}}
+            \label{ssec:#1}
+            \begin{flushright}
+            \textbf{Desde:}  #2 \
+            \textbf{Hasta:}  #3 \
+            \end{flushright}
+        \end{tcolorbox}
+
+    \begin{enumerate}[{Ejercicio} 1.]
+    }
+    {
+        \end{enumerate}
+        \np
+    }
+
+% - new observation
+\newenvironment{obs}
+    {
+        \begin{flushleft}
+       \textbf{Observación}\
+        \line(1,0){200} \
+        \end{flushleft}
+    }
+    {
+        \begin{flushright}
+        \line(1,0){200}
+        \end{flushright}
+    }
+% ============================================================================= %
+
+\begin{document}
+
+Se busca extender la idea de una \textbf{integral definida} a la de una
+\textbf{integral doble o triple} usando funciónes de dos o tres variables.
+Luego estas ideas serán utilizadas para calcular volumenes, masas y centroides
+de regiones más generales. Además se utilizaran las integrales dobles para
+calcular las probabilidades cuando dos variables aleatorias estan involucradas.
+
+Finalmente se demostrará la utilidad de las  \textbf{coordenadas polares} en el
+contexto de calcular \textbf{integrales dobles} en cierto tipo de regiones.
+Para así introducir \textbf{dos nuevos sistemas de coordenadas} en el
+espaciotres dimenciones -\emph{coordenadas cilindicas y coordenadas esfericas}-
+que al final haran mpas sencilla la computación de integrales triples en cierto
+tipo de \textbf{regiones solidas comunes}.
+
+
+\section{14.08.2020 - Integrales dobles sobre rectángulos, Integrales iteradas}
+\label{sec:integrales_dobles_sobre_rectangulos_integrales_iteradas}
+
+\subsection{Volumen e Integrales Dobles}
+\label{ssec:volumen_e_integrales_dobles}
+
+De manera similar a la integral de una variable, la integral de dos variables
+se considera como una función  \(f\) de dos variables definidas en un
+\textbf{rectángulo cerrado}
+\[
+    R=\left[a,b\right] \times \left[ c,d \right] = \left\{ \left( x,y \right)\in\mathbb{R}^{2}|a\le x \le b, \right\}
+.\]
+
+primero suponiendo que \(f\left(x,y\right)\ge 0\). La grafica de \(f\) es una
+superficie con la equación \(z=f\left( x,y \right)\). Sea \(S\) el solido que
+se encuentra encima de \(R\) y debafo de la grafica de \(f\), tal que:
+\[
+S=\left\{\left(x,y,z\right)\in\mathbb{R}^{3}|0\le z \le f\left(x,y\right),\left( x,y \right) \in R \right\}
+.\]
+
+\begin{figure}[ht]
+    \centering
+    \incfig{graph}
+    \caption{graph}
+    \label{fig:graph}
+\end{figure}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
+
