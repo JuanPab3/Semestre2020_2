@@ -1,0 +1,295 @@
+\documentclass[a4paper,dvipsnames]{book}
+
+% ====| P A C K A G E S |==== %
+\usepackage{import}
+\usepackage{nicematrix}
+%\usepackage[backend=biber, style=authoryear-icomp]{biblatex}    %Bibliography stuff
+%\input{./../../commands.tex}
+\usepackage[margin=1in,includefoot]{geometry}   %Margins
+\usepackage[utf8]{inputenc} %Language stuff
+%\usepackage [latin1]{inputenc}  %Spanish symbols
+\usepackage[spanish]{babel} %Sets document language to spanish
+\usepackage{tcolorbox}  %Frame boxes
+\usepackage{enumerate}  %Lists options
+\usepackage{mfirstuc}   %I use it to capitalize words
+\usepackage{graphicx}   %Use Images
+\usepackage{listings}   %For displaying code
+\usepackage{titlesec}   %Costume titles/sections/...
+\usepackage{hyperref}   %Linking options
+\usepackage{multicol}	%Use column
+\usepackage{amsmath}    %Display equations options
+\usepackage{amssymb}    %More symbols
+\usepackage{titling}    %Use title variables in other places
+\usepackage{xcolor}     %To manage colors
+\usepackage{transparent}%For figures
+\usepackage{pdfpages}   %For figures
+% =========================== %
+
+% ====| P A C K A G E S    S E T T I N G S |==== %
+% \addbibresource{/media/jpi/Data/01_Education/04_bibiografia/bibliography.bib} %<--- Bibliography path
+% ============================================== %
+
+% ====| P E R S O N A L    C O M M A N D S    &    E N V I R O N M E N T S|==== %
+
+% - New figure
+\newcommand{\incfig}[2][1]{%
+    \def\svgwidth{#1\columnwidth}
+    \import{./figures/}{#2.pdf_tex}
+}
+
+\pdfsuppresswarningpagegroup=1
+
+% - New page
+\newcommand{\np}{\null\newpage}
+
+% - new homework
+\newenvironment{tarea}[3]
+    {
+        \null\newpage
+        \begin{tcolorbox}
+            \textbf{\asignatura\ -\ \autor}
+            \subsection{\capitalisewords{#1}}
+            \label{ssec:#1}
+            \begin{flushright}
+            \textbf{Desde:}  #2 \
+            \textbf{Hasta:}  #3 \
+            \end{flushright}
+        \end{tcolorbox}
+
+    \begin{enumerate}[{Ejercicio} 1.]
+    }
+    {
+        \end{enumerate}
+        \np
+    }
+
+% - new observation
+\newenvironment{obs}
+    {
+        \begin{flushleft}
+       \textbf{Observación}\
+        \line(1,0){200} \
+        \end{flushleft}
+    }
+    {
+        \begin{flushright}
+        \line(1,0){200}
+        \end{flushright}
+    }
+% ============================================================================= %
+
+
+\begin{document}
+
+\section{17.08.2020 - Independencia}
+\label{sec:independencia}
+
+Cuando se introdujo la probabilidad condicional \(P\left(A|B\right)\), se hizo
+para para capturar la información parcial que \(B\) entrga con respecto de
+\(A\). Una sotiación interesante (e importante) sucede cuando el hecho de que
+\(B\) haya sucedido no altera la probabilidad de que \(A\) suceda, tal que:
+\[P\left(A|B\right)=P\left(A\right)\]
+
+Cuando esté tipo de situación sucede, se dice que {\color{MidnightBlue} \(A\)
+es \textbf{independiente} de \(B\)}. En esté caso por definición de \(P\left(A|B\right)=\frac{P\left(A\cap B\right)}{P\left(B\right)}\) es equivalente a:
+\[ P\left(A\cap B\right)=P\left(A\right)P\left(B\right) .\]
+Esta ultima relación se adopta como la definición de \textbf{independencia}
+pues esta se puede usar en el caso tal donde \(P\left(B\right)=0\), algo que
+con la probabilidad condicional no se podría a causa de que
+\(P\left(A|B\right)\) quedaría indefinido.
+
+\subsubsection{Simetría}
+
+La simetría de está relación tambien indica que la \textbf{independencia} es una propiedad simetrica; es decir, si \(A\) es independiente de \(B\), de igual manera \(B\) es independiente de \(A\). Por lo tanto cuando hay una relación de independencia se describe como un par de eventos independientes,ej: {\color{Salmon} \(A\) y \(B\) son eventos \textbf{independientes}}.
+
+\begin{obs}
+    Aunque en los entornos abituales del anánlisis y del pensamiento la
+    \textbf{independencia} es bastante inintuitiva, en la visualización de
+    \(\Omega \) suele ser algo confusa; ya que lo mas común es que se vea a una
+    relación independiento como un par de conjuntos \textit{disyuntos}, pero en
+    realidad es todo lo contrario. Es decir, si se tienen dos conjuntos
+    disyuntos \(A\) y \(B\) donde \(P\left(A\right)>0 \text{ y
+    }P\left(B\right)>0\) nunca serán independientes ya que su intersección
+    \(A\cap B=0\). {\color{BrickRed} El ejemplo más obvio es el de una
+    probabilidad \(A\) con respecto a su complemento \(A^{c}\), estó pues si lo
+    que sucede esta en uno de los dos conjuntos, es obvio que no está en el otro}.
+    Lo que contradice la definición de \textbf{independencia}.
+\end{obs}
+
+\subsection{Ejemplo}
+
+Condiferando un experimento donde se lancen {\color{orange} dos dados de cuatro
+caras} en forma simultania, se tendrian 16 posibles resultados con la misma
+probabilidad de \(\frac{1}{16}\).
+\begin{enumerate}[{(a) }]
+    \item Son los eventos \(A_{i}\) y \(B_{j}\) independientes? tal que:
+        \[
+        A_{i}=\left\{\text{Primer lanzamiento resulata en }i\right\},
+        B_{j}=\left\{\text{Segundo lanzamiento resulata en }j\right\}
+        .\]
+       Se tiene que:
+       \[
+       P\left(A_{i}\cap B_{j}\right)= P\left(\text{el resultado de los dos lanzamientos es }\left(i,j\right)\right)=\frac{1}{16}
+       ,\]
+       \[
+       P\left(A_{i}\right)= \frac{\text{número de elementos en }A_{i}}{\text{cantidad total de elementos}}=\frac{4}{16}
+       ,\]
+       \[
+       P\left(B_{j}\right)= \frac{\text{número de elementos en }B_{j}}{\text{cantidad total de elementos}}=\frac{4}{16}
+       .\]
+Con lo anterior podemos observar que \(P\left(A_{i}\cap A_{j}\right)=P\left(A_{i}\right)P\left(B_{j}\right)\), confirmando que \(A_{i}\) y \(B_{j}\) son independietes.
+
+    \item Siendo \(A\text{ y }B\) los eventos definidos de forma:
+        \[ A=\left\{\text{el primer tiro es 1}\right\},B=\left\{ \text{la suma
+        de los dos tiros es 5}\right\} \]
+
+    son \(A \text{ y }B\) independientes? Se tiene:
+    \[ P\left(A\cap B\right)=P\left(\text{el resultado de los dos lanzamientos
+    está entre 1 y 4}\right)=\frac{1}{16} ,\]
+    tambien:
+    \[
+    P\left(A\right)=\frac{\text{número de elementos en \(A\)}}{\text{cantidad total de elementos}}=\frac{4}{16},\]
+    El evento \(B\) se puede formar con los resultaddos (1,4), (2,3), (3,2) y
+    (4,5). Ahora:
+    \[ P\left(B\right)=\frac{\text{numero de elmentos en \(B\)}}{\text{cantidad
+    total de elementos}}=\frac{4}{16} .\]
+    Teniendo ahora que  \(P\left(A\cap
+    B\right)=P\left(A\right)P\left(B\right)\), se puede concluir de que \(A
+    \text{ y  }B\) son eventos independientes.
+
+    \item Los eventos:
+        \[ A=\left\{\text{el resultado máximo de dos lanzamientos es 2}\right\},\]
+        \[B=\left\{\text{el resultado mínimo de los dos lanzamientos es 2}\right\}.\]
+
+    Intuitivamente se diría que estos dos eventos no son independientes, pues
+    el valor mínimo entre dos lanzamientos comparte información con el máximo.
+    Por ejemplo, si el {\color{Plum} mínimo es 2}, {\color{BlueViolet} el
+    máximo no puede ser 1}. Pero para salír de las dudas lo mejor es demostrar
+    la relacción. Por lo tanto se tiene:
+    \[ P\left(A\cap B\right)=P\left(\text{el resultado de dos lanzamientos es
+    }\left(2,2\right)\right)=\frac{1}{16} ,\]
+    además:
+    \[ P\left(A\right)=\frac{\text{número de elementos en }A}{\text{cantidad
+    total de elementos}}=\frac{3}{16},\]
+    \[ P\left(B\right)=\frac{\text{número de elementos en }B}{\text{cantidad
+    total de elementos}}=\frac{5}{16} ,\]
+    Pero en esté coso  \(P\left(A\right)P\left(B\right)=\frac{15}{256}\),
+    confirmando la sospecha de que \(A \text{ y }B\) no son eventos
+    independientes.
+\end{enumerate}
+\begin{obs}
+    Se puede verificar que si \(A \text{ y }B\) son independientes, la mísma
+    propiedad se cumple entre \(A \text{ y }B^{c}\).\footnote{Revisar los
+    problemas al final del capitulo.}
+\end{obs}
+
+\subsection{Independencia Condicional}
+\label{ssec:independencia_condicional}
+
+Apartir de la conclusión previa donde se extrajo el concepto de la
+\textbf{probabilidad condicional}  desde el razonamiento de leyes legitimas de
+la probabilidad, que indicaba que esté tipo de probabilidad también sería
+tratada como una ley legitima de la probabilidad. {\color{SeaGreen} Se puede
+hacer mencón de la independencia de varios eventos con respecto a esta ley de
+la probabilidad condicional}. En particular, teniendo un evento \(C\), los
+eventos \(A \text{ y }B\) son llamados {\color{teal} \textbf{condicionalmente
+independientes}} si:
+
+\[ P\left(A\cap B|C\right)=P\left(A|C\right)P\left(B|C\right) \]
+
+\subsubsection{Propiedad anexa}
+Par deribar un caracterización alternativa de la condiciónal independiente, se utiliza la definición de \textit{probabilidad condicional} y la regla de la multiplicación para obtener:
+
+\begin{align*}
+    P\left(A\cap B|C\right)&=\frac{P\left(A\cap B\cap C\right)}{P\left(C\right)}\\
+             &=\frac{P\left(A|B\cap C\right)P\left(B|C\right)P\left(C\right)}{P\left(C\right)}\\
+             &=P\left(A|B\cap C\right)P\left(B|C\right),
+\end{align*}
+Teniendo en cuenta la igualdad principal de la independencia condicional:
+\[ P\left(A|C\right)P\left(B|C\right)=P\left(A|B\cap C\right)P\left(B|C\right)\]
+Y si se divide por \(P\left(B|C\right)\) en ambos lados queda:
+\[ P\left(A|C\right)=P\left(A|B\cap C\right) .\]
+    Es decir que si \(P\left(B\cap C\right)>0,\) donde \(A,B\) son eventos
+    condicionalmente independientes, no importa si despues de que ocurra \(C\)
+    ocurra \(B\) con respecto de \(A\).
+
+\begin{obs}
+    ¿Independencia implica independencia condicional?
+    \begin{center}
+        {\color{OrangeRed} \textbf{N O P}}
+    \end{center}
+\end{obs}
+
+\subsection{Ejemplo}
+
+Considere dos lanzamientos de ponedas (justos), en donde los cuatro distintos posibles resultados son igualmente posibles; Ahora:
+\begin{align*}
+    H_1&=\left\{\text{la primera lanzada cae cara}\right\},\\
+    H_2&=\left\{\text{la segunda lanzada cae cara}\right\},\\
+    D &=\left\{\text{ambos lanzamientos entregan resultados distintos}\right\}.
+\end{align*}
+Los eventos \(H_1\) y \(H_2\) son independientes, pero:
+\[P\left(H_1|D\right)=\frac{1}{2},\hspace{1cm}
+P\left(H_2|D\right)=\frac{1}{2},\hspace{1cm}
+P\left(H_1\cap H_2|D\right)=0\]
+
+en esté caso se tiene que \(P\left(H_1\cap H_2|D\right)\neq
+P\left(H_1|D\right)P\left(H_2|D\right)\), por lo tanto \(H_1\) y \(H_2\)
+{\color{RedViolet} no son condicionalmente independientes}.
+
+\begin{obs}
+Con esté ejemplo se puede generalizar el hecho de que si teniendo a los eventos
+independientes \(A\) y \(B\) y además al evento \(C\) tal que:
+\(P\left(C\right)>0\), \(P\left(A|C\right)>0\) y \(P\left(B|C\right)>0\), pero
+que \(A\cap B\cap C=\emptyset\). Entonces \(A\) y \(B\) no pueden ser
+condicionalmente independientes dado \(C\), pued \(P\left(A\cap B|C\right)=0\)
+mientras que \(P\left(A|C\right)P\left(B|C\right)>0\).
+\end{obs}
+
+\subsection{Independencia de varios eventos}
+\label{ssec:independencia_de_varios_eventos}
+
+Se dice que los eventos \(A_1,A_2,\ldots,A_{n}\) son independientes si:
+\[P\left(\bigcap_{i \in S} A_{i}\right)=\prod_{i\in S}P\left(A_{i}\right),
+\text{para todo subset }S \text{ en }\left\{1,2,\ldots,n\right\} .\]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

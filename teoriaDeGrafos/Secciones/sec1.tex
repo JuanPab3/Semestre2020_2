@@ -1,0 +1,229 @@
+\documentclass[a4paper]{book}
+
+% ====| P A C K A G E S |==== %
+\usepackage{import}
+%\usepackage[backend=biber, style=authoryear-icomp]{biblatex}    %Bibliography stuff
+%\input{./../../commands.tex}
+\usepackage[margin=1in,includefoot]{geometry}   %Margins
+\usepackage[utf8]{inputenc} %Language stuff
+%\usepackage [latin1]{inputenc}  %Spanish symbols
+\usepackage[spanish]{babel} %Sets document language to spanish
+\usepackage{tcolorbox}  %Frame boxes
+\usepackage{enumerate}  %Lists options
+\usepackage{mfirstuc}   %I use it to capitalize words
+\usepackage{graphicx}   %Use Images
+\usepackage{listings}   %For displaying code
+\usepackage{titlesec}   %Costume titles/sections/...
+\usepackage{hyperref}   %Linking options
+\usepackage{multicol}	%Use column
+\usepackage{amsmath}    %Display equations options
+\usepackage{amssymb}    %More symbols
+\usepackage{titling}    %Use title variables in other places
+\usepackage{xcolor}     %To manage colors
+\usepackage{transparent}%For figures
+\usepackage{pdfpages}   %For figures
+% =========================== %
+
+% ====| P A C K A G E S    S E T T I N G S |==== %
+% \addbibresource{/media/jpi/Data/01_Education/04_bibiografia/bibliography.bib} %<--- Bibliography path
+% ============================================== %
+
+% ====| P E R S O N A L    C O M M A N D S    &    E N V I R O N M E N T S|==== %
+
+% - New figure
+\newcommand{\incfig}[2][1]{%
+    \def\svgwidth{#1\columnwidth}
+    \import{./figures/}{#2.pdf_tex}
+}
+
+\pdfsuppresswarningpagegroup=1
+
+% - New page
+\newcommand{\np}{\null\newpage}
+
+% - new homework
+\newenvironment{tarea}[3]
+    {
+        \null\newpage
+        \begin{tcolorbox}
+            \textbf{\asignatura\ -\ \autor}
+            \subsection{\capitalisewords{#1}}
+            \label{ssec:#1}
+            \begin{flushright}
+            \textbf{Desde:}  #2 \
+            \textbf{Hasta:}  #3 \
+            \end{flushright}
+        \end{tcolorbox}
+
+    \begin{enumerate}[{Ejercicio} 1.]
+    }
+    {
+        \end{enumerate}
+        \np
+    }
+
+% - new observation
+\newenvironment{obs}
+    {
+        \begin{flushleft}
+       \textbf{Observación}\
+        \line(1,0){200} \
+        \end{flushleft}
+    }
+    {
+        \begin{flushright}
+        \line(1,0){200}
+        \end{flushright}
+    }
+% ============================================================================= %
+
+\begin{document}
+
+\section{06.08.2020 - Conceptos Fundamentales}
+\label{sec:conceptos_fundamentales}
+
+\subsection{Grafo}
+Un \textbf{grafo} \(G\) es un terna que consiste en un conjunto de vértices
+\(V\left(G\right)\), un conjunto de aristas \(E\left(G\right)\) y una relación
+que asocia a cada arista un par de vértices no necesariamente distinos.
+
+\subsection{Relación de adyacencia}
+\begin{itemize}
+    \item Dos vértices \(y\text{ y }v\) son \textbf{adyacentes} (vecinos) si \(u\text{ y }v\) son los extremos de una aeista \(e\).
+    \item  Si \(u\) es adyacente a \(v\) se nota: \(u\leftrightarrow v\).
+\end{itemize}
+
+\begin{obs}
+    \begin{itemize}
+        \item Un \textbf{bucle} o \textbf{lazo} es una arista cuyos extremos son iguales.
+        \item Dos o más aristas son \textbf{múltiples} o \textbf{paralelas} si
+            tiene el mismo par de extremos.
+    \end{itemize}
+\end{obs}
+
+\subsection{Grafo simple}
+Un grafo simple \(G=\left( V,E \right) \) es un grafo sin bucles ni aristas
+múltiples, donde \(E\) es un conjunto de pares no ordenados de vértices.
+
+\subsection{Grafo finito}
+ Un grafo es  \textbf{finito} si \(V\left(G\right)\text{ y } E
+ \left(G\right) \) son conjuntos finitos.
+
+\subsection{Grafo nulo}
+El \textbf{grafo nul} es el grafo \(G\), tal que \(V\left( G \right)
+=\emptyset \text{ y } E\left(G\right)=\emptyset\).
+
+\subsection{Grafos complemetarios}
+El complemeto \(\overline{G}\) de un grafo \(G\), es el grafo simple con
+conjunto de vértices \(V\left(G\right)\) definido por: \(uv\in
+E\left(\overline{G}\right) \text{ sii } \not\in E\left(G\right)\).
+
+\subsection{Clique}
+Un \textbf{clique} es un conjunto de vértices \textit{2 a 2}\footnote{Todo par
+de vértices en el conjunto es adyacente.}
+
+\subsection{Conjunto independiente}
+Un \textbf{conjunto independiente} es un conjunto de vértices no adyacentes \textit{2 a 2}
+
+\begin{obs}
+    \(W\) es un clique en \(G\) sii \(W\) es un conjunto independiente en
+    \(\overline{G}\).
+\end{obs}
+
+\subsection{Grafo bipartito}
+Un grafo \(G\) es \textbf{bipartito} si \(V\left( G \right) \) es la unión de
+dos conjuntos disyuntos independientes denominados conjuntos partitos de \(G\).
+\begin{figure}[ht]
+    \centering
+    \incfig{bipartito}
+    \caption{bipartito}
+    \label{fig:bipartito}
+\end{figure}
+
+\subsection{Grafo k-partito}
+Un grafo es \textbf{\textit{k}-partito} si \(V\left(G\right)\) es la unión de
+\(k\) conjuntos disyuntos independientes.
+
+\subsection{Número cromático}
+El \textbf{número cromático} de un grafo \(G\), \(X\left(G \right)\), es el
+mínimo número de colores necesarios para etiquetar los vértices de \(G\) de tal
+manera que vértices adyacentes reciban colores distintos.
+
+\subsubsection{Teorema}
+Un grafo es \(G\) es k-partito sii  \(X\left(G\right) \le k\).
+
+\subsection{Subgrafo}
+Un \textbf{subgrafo} de un grafo \(G\) es un grafo \(H\) tal que:
+\begin{enumerate}
+    \item \(V\left(H\right)\subseteq V\left(G\right) \)
+    \item \(E\left(H\right)\subseteq E\left(G\right)\)
+\end{enumerate}
+Y la asignación de extremos a las aristas en \(H\) es la misma que en \(G\). Se
+nota \(H\subseteq G\).
+
+\subsection{Camino}
+Un \textbf{camino} es un grafo simple cuyos vértices pueden ordenarse en una
+lista de tal manera que dos vértices son adyacentes sii son consecutivos en la
+lista.
+
+\subsection{Ciclo}
+Un \textbf{ciclo} es un grafo simple con el mismo númer de vértices y aristas
+cuyos vpertices pueden ubicarse alrededor de un cirdulo de tal manera que dos
+vértices son adyacentes sii aparecen de manera consecutiva sobre el circulo.
+
+\subsection{Conexidad}
+Un grafo \(G\) es \textbf{conexo} si cada par de vértices en \(G\) pertenece a
+un camino, de lo contrario, \(G\) es disconexo.
+
+\subsection{Matriz de adyacencia y Matriz di incidencia}
+Sea \(G\) un grafo sin bucles con \(V\left(G\right)=\left\{v_1,v_2,\ldots,v_{n}
+\right\}\) y  \(E\left(G\right)=\left\{e_1,e_2,\ldots,e_{n}\right\}\).
+\begin{itemize}
+    \item La \textbf{matriz de adyacencia} de \(G\) es la matriz \(n\times n,
+        A\left(G\right),\) definida por:
+        \[
+        a_{ij}:= \text{ número de aristas  en }G \text{ con extremos }
+        \left\{v_{i},v_{j}\right\}
+        \]
+    \item La \textbf{matriz de incidencia} de \(G\) es la matriz \(n\times m,\
+        M\left(G\right),\) definida por:
+        \[m_{ij} := \left\{
+            \begin{array}{ll}
+                1  & \text{si }v_{i} \text{ es extremo de } e_{j}. \\
+                0  & \text{en cualquier otro caso.}
+            \end{array}
+        \right.
+        \]
+\end{itemize}
+
+\begin{obs}
+    \begin{enumerate}
+        \item \(A\left( G \right)\) depende del orden de los vértices.
+        \item Toda matriz de adyacencia es simpetrica.
+        \item Si \(G\) es simple, la matriz de adyacencia tiene entradas \(1\)
+            o \(0\) con \(0's\) en la diagonal.
+    \end{enumerate}
+\end{obs}
+
+\subsection{Grado de un vértice (1)}
+El \textbf{grado} de un vértice \(v\) es la suma de las entradas en la fila \(v\) en \(A\left( G \right)\) o \(M\left( G \right) \). {\color{teal} Se nota \(d\left( v \right) \) }.
+
+\begin{obs}
+    \begin{enumerate}
+        \item La matriz de adyacencia tambié se usa para representar grafos con
+            bucles. Un bucle en el vértice \(v_{i}\) es representado por un
+            \(1\) en la posición \(\left( i,i \right) \) de la matriz de
+            adyacencia.
+        \item {\color{orange} En esté caso no se cumple la propiedad del grado de un vértice.}
+    \end{enumerate}
+\end{obs}
+
+\subsection{Grado de un vértice (2)}
+El \textbf{grado} de un vértice \(v\) es el número de aristas iniciales en
+\(v\). {\color{teal}Un bucle en \(v\) aporta dos unidades al grado de  \(v\)}.
+\begin{figure}[ht]
+    \centering
+    \incfig[0.7]{otro-grafo}
+\end{figure}
+
+\end{document}

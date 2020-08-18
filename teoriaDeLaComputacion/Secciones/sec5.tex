@@ -1,0 +1,223 @@
+\documentclass[a4paper,dvipsnames]{book}
+
+% ====| P A C K A G E S |==== %
+\usepackage{import}
+\usepackage{nicematrix}
+%\usepackage[backend=biber, style=authoryear-icomp]{biblatex}    %Bibliography stuff
+%\input{./../../commands.tex}
+\usepackage[margin=1in,includefoot]{geometry}   %Margins
+\usepackage[utf8]{inputenc} %Language stuff
+%\usepackage [latin1]{inputenc}  %Spanish symbols
+\usepackage[spanish]{babel} %Sets document language to spanish
+\usepackage{tcolorbox}  %Frame boxes
+\usepackage{enumerate}  %Lists options
+\usepackage{mfirstuc}   %I use it to capitalize words
+\usepackage{graphicx}   %Use Images
+\usepackage{listings}   %For displaying code
+\usepackage{titlesec}   %Costume titles/sections/...
+\usepackage{hyperref}   %Linking options
+\usepackage{multicol}	%Use column
+\usepackage{amsmath}    %Display equations options
+\usepackage{amssymb}    %More symbols
+\usepackage{titling}    %Use title variables in other places
+\usepackage{xcolor}     %To manage colors
+\usepackage{transparent}%For figures
+\usepackage{pdfpages}   %For figures
+% =========================== %
+
+% ====| P A C K A G E S    S E T T I N G S |==== %
+% \addbibresource{/media/jpi/Data/01_Education/04_bibiografia/bibliography.bib} %<--- Bibliography path
+% ============================================== %
+
+% ====| P E R S O N A L    C O M M A N D S    &    E N V I R O N M E N T S|==== %
+
+% - New figure
+\newcommand{\incfig}[2][1]{%
+    \def\svgwidth{#1\columnwidth}
+    \import{./figures/}{#2.pdf_tex}
+}
+
+\pdfsuppresswarningpagegroup=1
+
+% - New page
+\newcommand{\np}{\null\newpage}
+
+% - new homework
+\newenvironment{tarea}[3]
+    {
+        \null\newpage
+        \begin{tcolorbox}
+            \textbf{\asignatura\ -\ \autor}
+            \subsection{\capitalisewords{#1}}
+            \label{ssec:#1}
+            \begin{flushright}
+            \textbf{Desde:}  #2 \
+            \textbf{Hasta:}  #3 \
+            \end{flushright}
+        \end{tcolorbox}
+
+    \begin{enumerate}[{Ejercicio} 1.]
+    }
+    {
+        \end{enumerate}
+        \np
+    }
+
+% - new observation
+\newenvironment{obs}
+    {
+        \begin{flushleft}
+       \textbf{Observación}\
+        \line(1,0){200} \
+        \end{flushleft}
+    }
+    {
+        \begin{flushright}
+        \line(1,0){200}
+        \end{flushright}
+    }
+% ============================================================================= %
+
+\begin{document}
+
+\section{18.08.2020 - Expreciones Regulares}
+\label{sec:expreciones_regulares}
+
+\subsection{Definición recursiva}
+\label{ssec:definicion_recursiva}
+
+Las expresiones regulares están formadas por los siguientes bloques:
+\begin{enumerate}[{\hspace{0.5cm}\color{teal}1. }]
+    \item \(a\) para cada símbolo del alfabeto \(\Sigma\).
+    \item \(\epsilon\)
+    \item \(\emptyset\)
+\end{enumerate}
+
+Y por las siguientes regla. Si \(R_1\) y \(R_2\) son expresiones regulares,
+entonces también lo son:
+
+\begin{enumerate}[{\hspace{0.5cm}\color{orange}1. }]
+    \item \(\left(R_1\cup R_2\right)\)
+    \item \(\left(R_1R_2\right)\)
+    \item \(R_{i}^{*}\)
+\end{enumerate}
+
+\subsection{Lenguaje de una expresión regular}
+\label{ssec:lenguaje_de_una_expresion_regular}
+
+Sea \(R\) una expresión regular. Decimos que \(L\left(R\right)\) es el lenguaje
+correspondiente a \(R\), el cual se define de la siguiente manera:
+
+\subsubsection{Definición}
+
+\begin{enumerate}[{\hspace{0.5cm}\color{BlueViolet}1. }]
+    \item \(L\left(a\right) = \left\{a\right\},\) donde \(a\in \Sigma \)
+    \item \(L\left(\sigma \right) = \left\{\sigma \right\} \)
+    \item \(L\left(\emptyset\right) = \emptyset\)
+    \item \(L\left(R_1\cup R_2\right) = L\left(R_1\right)\cup L\left(R_2\right)\)
+    \item \(L\left(R_1R_2\right)=L\left(R_1\right)L\left(R_2\right)\)
+    \item \(L\left(R^{*}_{1}\right)=L\left(R_1\right)^{*}\)
+\end{enumerate}
+
+\subsection{Ejemplo}
+
+vamos a calcular el {\color{MidnightBlue} lenguaje corespondiente a la siguiente expresión regular \(R=\left(0\cup 1\right)0^{*}\)}
+\begin{align*}
+    L\left(\left(0\cup 1\right)0^{*}\right) &= L\left(0\cup 1\right)L\left(0^{*}\right) \\
+    &= \left(L\left(0\right) \cup L\left(1\right)\right)L\left(0^{*}\right)  \\
+    &= \left(L\left(0\right)\cup L\left(1\right)\right)L\left(0\right)^{*} \\
+    &= \left(\left\{0\right\} \cup \left\{1\right\}\right)\left\{0\right\}^{*} = \left\{0,1\right\}\left\{0\right\}^{*}\\
+\end{align*}
+Entonces el lenguaje que describe la expresión regular es:
+\[ L\left(R\right)=\left\{00^{k},10^{k},k\ge 0\right\}.\]
+
+\subsection{Convenciones}
+\label{ssec:convenciones}
+
+Convenimos en que \(R^{+}=RR^{*}\). Observe que \(R^{+}\) contiene las cadenas que están formadas por al menos una cadena \(R\). Con esta convención tenemos \(R^{+}\cup \epsilon =R^{*}\)
+
+Tambien convenimos en que \(R^{k}=R R R\ldots R\)(\(k\) veces).
+
+\subsection{Más ejemplos}
+
+\begin{enumerate}[{\hspace{0.5cm}\color{Purple}1. }]
+    \item \(0^{*}10^{*}=\left\{\text{w \(|\)w tiene un único 1}\right\}\)
+    \item \(\left(10^{+}\right)^{*}=\left\{w|w\text{ comienza con 1 y cada 1
+        está seguido de por lo menos un 0}\right\} \)
+    \item \(\left(0\cup \epsilon \right) \left(1\cup \epsilon \right) =
+        \left\{\epsilon ,0,1,01\right\}\)
+    \item \(\emptyset ^{*}=\left\{\epsilon\right\} \)
+    \item \(\Sigma^{*}010 \Sigma^{*}=\left\{w|w\text{ contiene la subpalabra }010\right\} \)
+\end{enumerate}
+
+\subsection{Diferencias entre \(\epsilon\) y \(\emptyset\)}
+\label{ssec:diferencias_entre_mk}
+
+
+
+\subsection{Aplicación a los compiladores}
+\label{ssec:aplicacion_a_los_compiladores}
+
+Las expresiones regulaares sirven para definir la etuctura aceptable  de las
+expresiones usadas en nombres y valores de las variables y constantes de los
+lenguajes de programación.
+
+{\color{BrickRed} Por ejemplo}, suponiengo \(\Sigma =\left\{+,-\right\} \cup
+D\), donde \(D=\left\{0,1,2,3,4,5,6,7,8,9\right\}\). Las expresiones numéricas
+pueden restringirse mediante la siguiente expresión regular:
+\[\left(+\cup -\cup \epsilon \right)\left(D^{+}\cup D^{+}.D^{*}\cup D^{*}.D^{+}\right).\]
+
+\section{18.08.2020 - Equivalencia entre expreciones regulares y lenguajes regulares}
+\label{sec:equivalencia_entre_expreciones_regulares_y_lenguajes_regulares}
+
+\subsection{Teorema}
+\label{ssec:teorema}
+
+Un lenguaje \(A\) es regular si y solo si hay un expresión regula \(R\) tal que
+\(L\left(R\right)=A\)
+
+\subsection{Lema p1}
+Si \(R\) es una expresión regular, entonces \(L\left(R\right)\) es regular.
+\subsubsection{Demostración por inducción}
+
+\begin{figure}[ht]
+    \centering
+    \incfig{aubaba}
+    \caption{aubaba}
+    \label{fig:aubaba}
+\end{figure}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

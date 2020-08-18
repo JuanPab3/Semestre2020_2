@@ -1,0 +1,343 @@
+\documentclass[dvipsnames,a4paper]{book}
+
+% ====| P A C K A G E S |==== %
+\usepackage{import}
+\usepackage{nicematrix}
+%\usepackage[backend=biber, style=authoryear-icomp]{biblatex}    %Bibliography stuff
+%\input{./../../commands.tex}
+\usepackage[margin=1in,includefoot]{geometry}   %Margins
+\usepackage[utf8]{inputenc} %Language stuff
+%\usepackage [latin1]{inputenc}  %Spanish symbols
+\usepackage[spanish]{babel} %Sets document language to spanish
+\usepackage{tcolorbox}  %Frame boxes
+\usepackage{enumerate}  %Lists options
+\usepackage{mfirstuc}   %I use it to capitalize words
+\usepackage{graphicx}   %Use Images
+\usepackage{listings}   %For displaying code
+\usepackage{titlesec}   %Costume titles/sections/...
+\usepackage{hyperref}   %Linking options
+\usepackage{multicol}	%Use column
+\usepackage{amsmath}    %Display equations options
+\usepackage{amssymb}    %More symbols
+\usepackage{titling}    %Use title variables in other places
+\usepackage{xcolor}     %To manage colors
+\usepackage{transparent}%For figures
+\usepackage{pdfpages}   %For figures
+% =========================== %
+
+% ====| P A C K A G E S    S E T T I N G S |==== %
+% \addbibresource{/media/jpi/Data/01_Education/04_bibiografia/bibliography.bib} %<--- Bibliography path
+% ============================================== %
+
+% ====| P E R S O N A L    C O M M A N D S    &    E N V I R O N M E N T S|==== %
+
+% - New figure
+\newcommand{\incfig}[2][1]{%
+    \def\svgwidth{#1\columnwidth}
+    \import{./figures/}{#2.pdf_tex}
+}
+
+\pdfsuppresswarningpagegroup=1
+
+% - New page
+\newcommand{\np}{\null\newpage}
+
+% - new homework
+\newenvironment{tarea}[3]
+    {
+        \null\newpage
+        \begin{tcolorbox}
+            \textbf{\asignatura\ -\ \autor}
+            \subsection{\capitalisewords{#1}}
+            \label{ssec:#1}
+            \begin{flushright}
+            \textbf{Desde:}  #2 \
+            \textbf{Hasta:}  #3 \
+            \end{flushright}
+        \end{tcolorbox}
+
+    \begin{enumerate}[{Ejercicio} 1.]
+    }
+    {
+        \end{enumerate}
+        \np
+    }
+
+% - new observation
+\newenvironment{obs}
+    {
+        \begin{flushleft}
+       \textbf{Observación}\
+        \line(1,0){200} \
+        \end{flushleft}
+    }
+    {
+        \begin{flushright}
+        \line(1,0){200}
+        \end{flushright}
+    }
+% ============================================================================= %
+
+\begin{document}
+\section{16.08.2020 - Taller 1}
+\label{sec:taller_1}
+
+\begin{enumerate}[{Ej1. }]
+\item En una clase el {\color{teal} 60\% de los estudiantes son genios}, al
+    {\color{brown} 70\% les gusta} el chocolate y el {\color{orange} 40\%
+    cae en las dos categorías}. ¿Cuál es la probabilidad de que un
+    estudiante seleccionado al azar no sea genio ni le guste el chocolate?
+
+\subsubsection{Respuesta}
+
+\begin{figure}[ht]
+    \centering
+    \incfig[0.4]{t1ej1}
+\end{figure}
+Para resolver esté problema es necesario encontrar el valor de \(A\cup B\),
+pues de esta forma solo sería necesario calcular \(1-\left(A\cup B\right)\)
+para obtener la respuesta a la probabilidad de seleccionar al azar un
+estudiante que no sea genio ni que le guste el chocolate.
+
+\begin{align*}
+    P\left(A\right)= 0.7&/P\left(B\right)=0.6/P\left(A\cap B\right)=0.4\\
+    P\left(A\cup B\right) &= P\left(A\right)+P\left(B\right)-P\left(A\cap B\right)\\
+    &=0.7+0.6-0.4\\
+    &=0.9\\
+    \\
+    P\left(\overline{A\cup B}\right) &= 1-P\left(A\cup B\right)
+    &= 1-0.9
+    &=0.1
+\end{align*}
+
+Por lo tanto se puede concluir que la probabilidad de que al azar sea seleccionado un estudiante que no sea genio ni le guste el chocolate es de {\color{orange} 0.1}.
+
+\item  Un dado de seis caras está cargado para que la probabilidad que caiga
+    {\color{OrangeRed} en un número par sea dos veces la probabilidad de que
+    caiga en un número impar}. {\color{olive} Construya un modelo de
+    probabilidad para un lanzamiento de este dado y calcule la probabilidad de
+    que el resulatado sea menor a 4}.
+
+\subsubsection{Respuesta}
+
+\begin{figure}[ht]
+    \centering
+    \incfig[0.33]{t1ej2}
+\end{figure}
+
+Como la probabilidad entre cada uno de los lados es igual para los elementos
+que estan en cada uno de los subconjuntos se sabe lo siguiente:
+
+\begin{itemize}
+    \item \(P\left\{i\right\}=\frac{2}{9},i\in\left\{2,4,6\right\} \)
+    \item \(P\left\{j\right\}=\frac{1}{9},j\in\left\{1,3,5\right\} \)
+\end{itemize}
+
+Como solo con los valores {\color{Mahogany} 1,2,3} se cumple la condición, se
+tiene que la probabilidad que se nos pide es igual
+{\color{BrickRed} \(P\left(\left\{1\right\}\right)+P\left(\left\{2\right\}
+\right)+P\left(\left\{3\right\}\right)\)} lo que es igual a {\color{
+BrickRed}\(\frac{2}{9}+\frac{1}{9}+\frac{1}{9}\)}, lo que nos lleva a concluir
+que la probabilidad de que al lanzar el dado cargado caiga un valor menor a
+cuatro es de {\color{RedViolet} \(\frac{4}{9}\)}.
+
+\item Una moneda se lanza repetidamente {\color{Salmon} hasta que sale cara}.
+    Determine el espacio muestral de este experimento.
+\subsubsection{Respuesta}
+Como lo que se está observando es la cantidad de lansamientos requeridos, el
+espacio muestral se conforma por \(n\), tal que \(\Omega = \left\{n|n\text{ es
+la cantidad de veces que se lanza la moneda}\right\}\).
+
+
+\item Usted entra a un torneo de ajedez en el que {\color{Sepia} debe jugar
+    contra 3} oponentes. Aunque los oponentes están fijos,
+    {\color{MidnightBlue} usted puede escoger el orden en que los enfrente
+    orden en que los enfrenta}. De experiencias anteriores, usted sabe cuál es
+    la probabilidad de derrotar a cada uno de los
+    oponentes.{\color{JungleGreen} Usted gana el torneo si logra derrotar a dos
+    de forma consecutiva}. Si usted quiere maximizar la probabilidad de ganar
+    el torneo, {\color{Orchid} muestre que la estrategia óptima es jugar con el
+    oponente más debil en el segundo partido, y que el orden en que juegue
+contra los otros dos no importa}.
+\subsubsection{Respuesta}
+
+
+
+
+
+\item Utilice los axiomas de probabilidad para demostrar, que para dos eventos
+    \(A\) y  \(B\),
+    \[P\left(\left(A\cap \overline{B}\right)\cup\left(\overline{A}\cap B\right)
+    \right)=P\left(A\right)+P\left(B\right)-2P\left(A\cap B\right),\]
+    que es la probabilidad de que exactamente uno de los eventos \(A\) o \(B\)
+    ocurra.
+\subsubsection{Respuesta}
+
+
+
+
+
+
+
+
+
+
+
+\item Se lanzan dos dados justos de seis caras. Asuma que cada uno  de los
+    {\color{NavyBlue} 36 posibles resultadoses igualmente probable}.
+
+    \begin{enumerate}[{a) }]
+        \item Determine la probabilidad de que salga un doble {\color{Magenta}
+            (1 y 1, 2 y 2, etc)}.
+        \item Dado que el resultado es menor o igual a 4, {\color{ForestGreen}
+            determine la probabilidad condicional de que halla salido un
+            doble}.
+        \item Determine la probabilidad de que al menos uno de los dados sea 6.
+
+        \item Dado que los dos dados caes en números diferentes, {\color{Melon}
+            determine la probabilidad de que al menos uno de los dados haya
+            caído en 6}.
+    \end{enumerate}
+\subsubsection{Respuestas}
+\begin{figure}[ht]
+    \centering
+    \incfig[0.7]{dosdasos}
+\end{figure}
+\begin{enumerate}[{a) }]
+    \item Ya que todos los valores tiene la misma posibilidad, significa que
+        cualquiera de las 36 combinaciones de numeros tienen {\color{Tan}
+        \(\frac{1}{36}\)} de posibilidad. Luego como hay seis situaciones donde
+        se cumple la condición, se puede concluir afirmando que la posibilidad
+        de sacar soble es de {\color{Mulberry} \(\frac{1}{6}\)}.
+    \item Como los únicos dobles menores o iguales a cuatro son los que se
+        forman con {\color{OrangeRed} 1} y {\color{Cerulean} 2}, se puede
+        concluir que la probabilidad de que salgnan dobles es igual a
+        {\color{MidnightBlue} \(\frac{1}{18}\)}.
+    \item Ya que entre las 36 situaciones posibles de esté lanzamiento once
+        cumplen la condición, se puede concluir afirmando que la probabilidad
+        de que al menos uno de los dados sea 6, es de {\color{YellowOrange}
+        \(\frac{11}{36}\)}.
+    \item Revisando el \textit{punto} anterior, se puede ver que la
+        unica situación que encaja ahí pero no en este \textit{punto}, es en el
+        caso de que ambos dados caigan en seis, por lo tanto se debe hacer el
+        mismo cálculo pero con una opción menos; siendo esto igual {\color{Cyan}\(\frac{5}{18}\)}.
+\end{enumerate}
+
+
+\item Se tienen {\color{BlueViolet} 3 monedas}, {\color{RubineRed} una con dos
+    caras}, {\color{Peach} una con dos sellos}, {\color{Periwinkle} y una con
+    una cara y un sello}. Se selecciona una moneda al azar y el resultado es cara.
+    ¿Cuál es la probabilidad de que el otro lado de la moneda sea sello?
+    \subsubsection{Respuesta}
+\begin{figure}[ht]
+    \centering
+    \incfig[0.5]{caracarasellosello}
+\end{figure}
+
+Si se analiza el problema, se
+
+
+
+
+
+
+
+
+\item Un vuelo programado tiene probabilidades iguales a {\color{Plum} 0.93 de
+    salir a tiempo} y {\color{BlueGreen} 0.90 de llegar a tiempo}. Además se
+    sabe que la probabilidad de {\color{Bittersweet} salir y llegar a tiempo es
+    de 0.85}.
+    \begin{enumerate}[{a) }]
+        \item ¿Cuál es la probabilidad de que llegue a tiempo dado que salió a
+            tiempo?.
+        \item Si el vuelo llegó a tiempo, ¿cuál es la probabilidad de que haya
+            salido a tiempo?
+    \end{enumerate}
+
+
+
+
+
+
+
+
+
+
+\item Pepa tiene que pesentar los exámenes de cálculo y álgebra el mismo día. La probabilidad de pasar el examen de cálculo es de {\color{Aquamarine} \(\frac{3}{4}\)}, la de pasar el de álgebra es de {\color{Plum} \(\frac{1}{2}\)} y la de pasar ambos es de  {\color{Thistle} \(\frac{1}{4}\)}.
+    \begin{enumerate}[{a) }]
+        \item ¿Cuál es la probabilidad de que pase al menos uno de los exámenes?
+        \item ¿Cuál es la probabilidad de que pase exactamente uno de los exámenes?
+        \item  Si aprueba solo un examen, ¿cuál es la probabilidad de que sea
+            el de álgebra?
+    \end{enumerate}
+
+\item Se tiene un grupo de personas conformado por {\color{Salmon} 40 hombres} y {\color{BrickRed} 60 mujeres}. El grupo presenta un examen y obtienen los siguientes resulatados:
+
+\begin{center}
+    \begin{tabular}{ |c|c|c|c| }
+        \hline
+        Resultado& \(H\) & \(M\) &\\ \hline
+        Aprobado \(\left(A\right) \) &24&36&60\\ \hline
+        Reprobado \(\left(R\right)\) &16&24&40\\ \hline
+                        &40&60&\\ \hline
+    \end{tabular}
+\end{center}
+Se selecciona una persona al azar:
+\begin{enumerate}
+    \item Si selecciona a un hombre ¿cuál es la probabilidad de que haya
+        aprobado?
+    \item Si selecciona alguien que aprobó, ¿cuál es la probabilidad de que sea
+        una mujer?
+\end{enumerate}
+
+
+\item Se tienen dos eventos \(P\left(A\right)=0.5\), \(P\left(B\right)=0.3\) y \(P\left(A\cap B\right)=0.1\). Determine:
+    \begin{itemize}
+        \item \(P\left(A|B\right)\)
+        \item \(P\left(B|A\right)\)
+         \item \(P\left(A|A\cap B\right)\)
+         \item \(P\left(A|A\cap B\right)\)
+         \item \(P\left(A\cap B|A\cap B\right)\)
+    \end{itemize}
+
+
+
+
+\item Sean \(A\) y \(B\) eventos. Muestre que \(P\left(A\cap B|B\right)=P\left(A|B\right)\), suponiendo que \(P\left(B\right)>0\).
+
+
+
+
+
+
+
+
+\item Se tienen \(k\) cajas, cada una con \(m\) bolas blancas y \(n\) negras. Se selecciona al azar una bola de la primera caja y se transfiere a la segunda caja. Luego se selecciona al azar una bola de la segunda caja y se transfiere a la tercera. Se repite el ejercicio hasta que al final se selecciona una bola al azar de las \(k\)-ésima caja. Muestre que la probabilidad de que la última bola seablanca es la misma que de que al primera sea blanca,\textit{i.e, \(\frac{m}{\left(m+n\right) }\)}.
+
+
+
+
+
+
+
+
+
+\item Dos jugadores se turnan para seleccionar una bola de una caja que
+    inicialmente contiene {\color{red} \(m\) bolas rojas} y
+    {\color{MidnightBlue} \(n\) bolas azules}. El primer jugador en extraer una
+    {\color{red} bola roja gana}. Determine una formula recursiva (sobre
+    {\color{MidnightBlue} \(n\)}) que permita calcular la probabilidad de que
+    el jugador que empieza gane.
+
+    \textbf{Pista:} Calcule primero \(P_0\) (probabilidad de que el primer jugador gane cuando no hay {\color{MidnightBlue} bolaz azules}), luego \(P_1,P_2,etc.\), usando el teorema de probabilidad total sobre los eventos:
+    \begin{enumerate}[{(1) }]
+        \item Seleccionar una bola roja en el primer intento.
+        \item Seleccionar una {\color{MidnightBlue} bola azul} en el primer
+            intento.
+    \end{enumerate}
+Recuerde que la probabilidad de que el primer jugador gane es uno menos la
+probabilidad de que el segundo gane.
+
+
+\end{enumerate}
+\end{document}

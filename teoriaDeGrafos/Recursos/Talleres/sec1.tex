@@ -1,0 +1,214 @@
+\documentclass[a4paper]{book}
+
+% ====| P A C K A G E S |==== %
+\usepackage{import}
+\usepackage{nicematrix}
+%\usepackage[backend=biber, style=authoryear-icomp]{biblatex}    %Bibliography stuff
+%\input{./../../commands.tex}
+\usepackage[margin=1in,includefoot]{geometry}   %Margins
+\usepackage[utf8]{inputenc} %Language stuff
+%\usepackage [latin1]{inputenc}  %Spanish symbols
+\usepackage[spanish]{babel} %Sets document language to spanish
+\usepackage{tcolorbox}  %Frame boxes
+\usepackage{enumerate}  %Lists options
+\usepackage{mfirstuc}   %I use it to capitalize words
+\usepackage{graphicx}   %Use Images
+\usepackage{listings}   %For displaying code
+\usepackage{titlesec}   %Costume titles/sections/...
+\usepackage{hyperref}   %Linking options
+\usepackage{multicol}	%Use column
+\usepackage{amsmath}    %Display equations options
+\usepackage{amssymb}    %More symbols
+\usepackage{titling}    %Use title variables in other places
+\usepackage{xcolor}     %To manage colors
+\usepackage{transparent}%For figures
+\usepackage{pdfpages}   %For figures
+\usepackage{subfig}
+% =========================== %
+
+% ====| P A C K A G E S    S E T T I N G S |==== %
+% \addbibresource{/media/jpi/Data/01_Education/04_bibiografia/bibliography.bib} %<--- Bibliography path
+% ============================================== %
+
+% ====| P E R S O N A L    C O M M A N D S    &    E N V I R O N M E N T S|==== %
+
+% - New figure
+\newcommand{\incfig}[2][1]{%
+    \def\svgwidth{#1\columnwidth}
+    \import{./figures/}{#2.pdf_tex}
+}
+
+\pdfsuppresswarningpagegroup=1
+
+% - New page
+\newcommand{\np}{\null\newpage}
+
+% - new homework
+\newenvironment{tarea}[3]
+    {
+        \null\newpage
+        \begin{tcolorbox}
+            \textbf{\asignatura\ -\ \autor}
+            \subsection{\capitalisewords{#1}}
+            \label{ssec:#1}
+            \begin{flushright}
+            \textbf{Desde:}  #2 \
+            \textbf{Hasta:}  #3 \
+            \end{flushright}
+        \end{tcolorbox}
+
+    \begin{enumerate}[{Ejercicio} 1.]
+    }
+    {
+        \end{enumerate}
+        \np
+    }
+
+% - new observation
+\newenvironment{obs}
+    {
+        \begin{flushleft}
+       \textbf{Observación}\
+        \line(1,0){200} \
+        \end{flushleft}
+    }
+    {
+        \begin{flushright}
+        \line(1,0){200}
+        \end{flushright}
+    }
+% ============================================================================= %
+\begin{document}
+
+\section{15.08.2020 - Tarea 1}
+\label{sec:tarea_1}
+
+\begin{enumerate}[{Ej 1: }]
+    \item Calcule el complemento de los siguientes grafos:
+    \begin{figure}[!ht]
+        \centering
+        \incfig[0.4]{t1ej1}
+        \incfig[0.4]{t1ej1a}
+    \end{figure}
+    \[ A_{G}= \begin{bNiceMatrix}[first-row,first-col]
+         &a&b&c&d&e\\
+        a&0&1&0&0&1\\
+        b&1&0&1&1&1\\
+        c&0&1&0&0&0\\
+        d&0&1&0&0&1\\
+        e&1&1&0&1&0\\
+        \end{bNiceMatrix}
+        I_{H}= \begin{bNiceMatrix}[first-row,first-col]
+             &e_1&e_2&e_3&e_4&e_5&e_6&e_7&e_8\\
+            a&1&0&0&1&1&0&0&0\\
+            b&1&1&0&0&0&1&1&1\\
+            c&0&0&1&1&0&0&0&1\\
+            d&0&1&1&0&0&0&1&0\\
+            e&0&0&0&0&1&1&1&1\\
+        \end{bNiceMatrix} \]
+
+
+    \item Encuentre un conjunto independiente de tamaño máximo en el grafo
+        \(G\) y un clique de tamaño máximo en el grafo \(H\).
+
+        \begin{itemize}
+            \item En el caso de \(G\) se tieme al conjunto
+                \(\left\{a,d,c\right\}\) como el conjunto independiente de
+                tamaño máximo con un tamaño de 3 elémentos.
+            \item Por otro lado, en \(H\) se pueden encontrar más de un clique
+                de máximo tamaño los cuales son:
+                \(\left\{a,b,e\right\}, \left\{e,b,d\right\},
+                \left\{d,e,c\right\},\left\{e,c,a\right\}\).
+        \end{itemize}
+
+
+    \item Escriba la matriz de adyacencia e incidencia del siguiente grafo:
+\begin{figure}[ht]
+    \centering
+    \incfig[1]{t1ej3}
+\end{figure}
+\[
+    A_{M}=\begin{bNiceMatrix}[first-row,first-col]
+         &a&b&c&d\\
+        a&0&3&0&2\\
+        b&3&0&1&1\\
+        c&0&1&1&2\\
+        d&2&1&2&0\\
+    \end{bNiceMatrix}
+    ,I_{M}=\begin{bNiceMatrix}[first-row,first-col]
+         &e_1&e_2&e_3&e_4&e_5&e_6&e_7&e_8&e_9&e_{10}\\
+        a&1&1&1&1&1&0&0&0&0&0\\
+        b&1&1&1&0&0&1&0&0&0&1\\
+        c&0&0&0&0&0&0&1&1&1&1\\
+        d&0&0&0&1&1&1&1&1&0&0\\
+    \end{bNiceMatrix}\]
+
+
+    \item Dubuje los grafos correspondintes a las siguientes matrices:
+        \[A_{A}=\begin{bNiceMatrix}[first-row,first-col]
+             &a&b&c&d\\
+            a&0&3&0&2\\
+            b&3&0&1&1\\
+            c&0&1&1&2\\
+            d&2&1&2&0\\
+        \end{bNiceMatrix}
+        , I_{B}=\begin{bNiceMatrix}[first-row,first-col]
+             &e_1&e_2&e_3&e_4&e_5&e_6&e_7&e_8\\
+            a&1&1&1&1&0&0&0&0\\
+            b&0&1&1&1&0&1&1&0\\
+            c&0&0&0&1&1&0&0&0\\
+            d&0&0&0&0&0&0&1&1\\
+            e&0&0&0&0&1&1&0&0\\
+        \end{bNiceMatrix}\]
+\begin{figure}[ht]
+    \centering
+    \incfig[0.4]{tiej4}
+\end{figure}
+
+    \item Escriba la forma general de la matriz de adyacencia del gafo
+        \(K_{n}\) y \(K_{m,n}\).
+        p{\color{teal}
+        \[A_{k_{n}}=\begin{bNiceMatrix}
+            0&1&1&\Cdots&1&\Cdots&1\\
+            1&0&1&\Cdots&1&\Cdots&1\\
+            1&1&0&&1&\Cdots&1\\
+            \Vdots&\Vdots&&\Ddots&\Vdots&&\Vdots\\
+            1&1&1&\Cdots&0&&1\\
+            \Vdots&\Vdots&\Vdots&&&\Ddots&\Vdots\\
+            1&1&1&\Cdots&1&\Cdots&0
+        \end{bNiceMatrix}
+        .\]
+
+        Un matriz \(n,n\) donde todos los elementos son 1
+        con exepción de la diagonal donde son 0.}
+
+    {\color{orange} En el caso \(K_{m,n}\) por el bien de la demostración, se
+        va a suponer que el grafo K se va a partir en dos sub-grafos con diseño
+        vertical.
+
+\begin{figure}[ht]
+    \centering
+    \incfig[0.5]{knm}
+\end{figure}
+    \vspace{-0.5cm}
+    Además, como se trata de un grafo sin etiquetas, si el grafo crece por
+    vertices <<arriba>> la matriz crecera por la derecha, y si el grafo crece
+    por <<abajo>> la matriz crecerá por la izquierda. la matriz de adyacencia
+    sería de la forma:
+    \[
+    A_{K_{n,m}}=\begin{bNiceMatrix}[first-row,first-col]
+     &1&2&\Cdots&n&1&2&\Cdots&m\\
+    1&0&0&\Cdots&0&1&1&\Cdots&1\\
+    2&0&0&\Cdots&0&1&1&\Cdots&1\\ \Vdots&
+    \Vdots&\Vdots&\Ddots&\Vdots&\Vdots&\Vdots&\Ddots&\Vdots\\
+    n&0&0&\Cdots&0&1&1&\Cdots&1\\
+    1&1&1&\Cdots&1&0&0&\Cdots&0\\
+    2&1&1&\Cdots&1&0&0&\Cdots&0\\ \Vdots&
+    \Vdots&\Vdots&\Ddots&\Vdots&\Vdots&\Vdots&\Ddots&\Vdots\\
+    m&1&1&\Cdots&1&0&0&\Cdots&0\\
+    \end{bNiceMatrix}
+    .\] }
+
+\end{enumerate}
+
+\end{document}

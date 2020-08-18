@@ -81,20 +81,38 @@
 \section{13.08.2020 - Caminos y Ciclos}
 \label{sec:caminos_y_ciclos}
 
+En esta sección se va hacer referencia al problema de \textbf{los puentes de
+Königsberg}, para poder deteminar cuando es podible hacer el recorrido por
+todas las aristas del grafo. Para estó se van a implementar utilies propiedades
+como la conexión, los caminos y los ciclos.
+
+
 \subsection{Caminata}
 \label{ssec:caminata}
 
 Una \textbf{caminata (walk)} en un grafo \(G\) es una lista:
-\[
-v_0e_1v_{1}\ldots e_{k}v_{k}
-.\]
- de vértices y aristas tal que para todo \(1\le 1 \le k\) la aarista \(e_{i}\)
+\[ v_0e_1v_{1}\ldots e_{k}v_{k} .\]
+ de vértices y aristas tal que para todo \(1\le i \le k\) la arista \(e_{i}\)
  tiene extremos \(v_{i-1}\) y \(v_{i}\).
 
 \subsection{Sendero}
 \label{ssec:sendero}
-
 Un \textbf{sendero (trail)} es una caminata sin aristas repetidas.
+
+\subsubsection{Ejemplo}
+\begin{figure}[ht]
+    \centering
+    \incfig[0.6]{sec3ej1}
+    \label{fig:sec3ej1}
+\end{figure}
+\begin{itemize}
+    \item \(v_1e_1v_1 {\color{orange} e_2}v_2e_3v_1 {\color{orange}
+        e_2}v_2e_4v_3\to\){\color{orange}(caminata)}
+    \item \(v_1e_2v_2e_4v_3e_5v_5\to\){\color{teal} (sendero)}
+    \item \(v_1e_3v_2e_4v_3e_5v_5\to\){\color{teal} (sendero)}
+\end{itemize}
+
+
 
 \subsection{u,v-caminata}
 \label{ssec:u_v_caminata}
@@ -151,11 +169,22 @@ Cada u,v-caminata contiene un u,v-camino.
 
 \subsubsection{Demostración (Inducción fuerte sobre longitud de la caminata)}
 \label{ssec:demostracion_induccion_fuerte_sobre_longitud_de_la_caminata_}
-
 \begin{enumerate}[{P}]
-    \item Base: u,v caminata de longitud 1, entonces es u,v-camino.
-    \item Inductivo: Cualquier ccaminata con lingitud menor o igual a \(n\) contiene un camino. Sea u,v-caminata de longitud \(n+1\). Si ya es un camino perfecto. Pero si no lo es, existe al menos un vertice interno n¿\(w\) que se repite, luego considere la u,v-caminata excluyendo las aristas entre las dos apariciones u,vcaminata excluyendo las arista entre lasss dos apariciones de w. Está nueva caminata tiene longitud menor o igual que \(\left(n+1\right)=n\) \ldots \textbf{S C R E E N S H O T}
+    \item Base: Sea \(l=0\). Al no tener aristas,la caminata consiste de un
+        único vértice \(\left(u=v\right)\). Este es un \(u,v\)-camino de
+        \(l=0\).
+    \item Inductivo: \(l\ge 1\). Suponiendo que la proposición se cumple para
+        caminatas de longitud menor a \(l\). Si la caminata no tiene vertices
+        repetidos, entonces sus vertices y aristas forman un \(u,v\)-camino. Si
+        la caminata tiene un vértice \(w\) repetido, entonces si se limita al
+        camino a todos los vértices y ejes despues de \(w\) (incluyendo a
+        \(w\)) creando una \(w,v\)-caminata dentro de la \(u,v\)-caminata. Por
+        lo tanto, por hipotesis de inducción se puede asegurar que en la
+        \(w,v\)-caminata existe un camino. Y como esté camino tambien va a
+        estar en la \(u,v\)-caminata, se ha demostrado por inducción que la
+        propiedad se cumple para toda caminata con \(l\ge 0\).
 \end{enumerate}
+
 
 \subsection{Grafo Conexo}
 \label{ssec:grafo_conexo}
@@ -163,43 +192,28 @@ Cada u,v-caminata contiene un u,v-camino.
 \begin{itemize}
     \item Un grafo \(G\) es \textbf{conexo} si existe un u,v-camino entre cada
         par \(uv\in V\left( G \right)\). En otro caso es \textbf{disconexo}.
-    \item  Si \(G\) tiene un u,v-camino entonces u está \textbf{conectado} con
-        v.
+    \item  Si \(G\) tiene un u,v-camino entonces \(u\) está \textbf{conectado}
+        con \(v\).
 \end{itemize}
 
 \subsection{Relación de conexión}
 \label{ssec:relacion_de_conexion}
 
 La \textbf{relación de conexión} en \(V\left(G\right)\) consiste en todos los pares ordenados \(\left(u,v \right)\) tales que \(u\) está conectado con \(v\):
-\[
-uRv\text{ sii existe un, u,v-camino.}
-.\]
+\[ uRv\text{ sii existe un } u,v\text{-camino.} \]
 
+\subsection{Teorema}
+La relación de conexión en \(V\left(G\right)\) es una relación de equivalencia,
+Es decir que si \(uRv\to vRu\).
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+\subsection{Componentes}
+\begin{itemize}
+    \item Las \textbf{componentes} de un grafo \(G\) son sub grafos conexos
+        maximales.
+    \item Una componente es \textbf{trivial} si no tiene aristas, en otro caso
+        no es trivial.
+    \item  Un \textbf{vértice aislado} es un vértice de grado cero.
+\end{itemize}
 
 
 \end{document}

@@ -4,6 +4,7 @@
 \usepackage{import}
 %\usepackage[backend=biber, style=authoryear-icomp]{biblatex}    %Bibliography stuff
 %\input{./../../commands.tex}
+\usepackage{nicematrix}
 \usepackage[margin=1in,includefoot]{geometry}   %Margins
 \usepackage[utf8]{inputenc} %Language stuff
 %\usepackage [latin1]{inputenc}  %Spanish symbols
@@ -104,9 +105,12 @@ E\left(G\right)\iff f\left(u\right) f\left(v\right) \in E\left(H\right) \)
     \caption{dos grafos isomorfos}
     \label{fig:dos-grafos-isomorfos}
 \end{figure}
+\begin{obs}
+    \textit{Encontrar isomorfismos} se puede demostrar presentando la \textbf{matriz de adyacencia} con los vertices ordenados de tal forma que se pueda distinguir la igualdad entre las dos matrices a evaluar.
+\end{obs}
 
-\subsection{Ivariante}
-\label{ssec:ivariante}
+\subsection{Invariante}
+\label{ssec:invariante}
 
 Un \textbf{invariante} de un grafo es una propiedad \(P\) preservada por
 isomorfismos. De forma más precisa, \(P\) es una invariante si siempre que
@@ -127,6 +131,23 @@ isomorfismos. De forma más precisa, \(P\) es una invariante si siempre que
     Sea \(P\) es una propiedad invariante, si \(G\) satisface \(P\) y \(H\) no
     satisface \(P\) entonces \(G\cong H\).
 \end{obs}
+\subsubsection{Listado de invariantes:}
+
+\begin{itemize}
+    \item \(G\) tiene \(n\) vértices.
+    \item \(G\) tiene \(m\) aristas.
+    \item \(G\) tiene \(n\) vértices de grado \(k\).
+    \item \(G\) tiene \(n\) ciclos de longitud \(k\).
+    \item \(G\) tiene \(n\) vértices adyacentes a \(m\) vértices de grado
+        \(k\).
+    \item \(X\left(G\right)=k\).
+    \item  \(G\) es conexo.
+    \item \(G\) es \(k-\text{partito}\).
+    \item \(G\) es plano.
+    \item \(G\) es euleriano.
+    \item \(G\) es hamiltoniano.
+\end{itemize}
+
 
 \subsection{Teorema}
 \label{ssec:teorema}
@@ -143,16 +164,16 @@ grafos simples.
 \subsection{Clases de isomorfismos}
 \label{ssec:clases_de_isomorfismos}
 
-\subsubsection{Ejemplos}
-\label{ssec:ejemplos}
-
 Una \textbf{clase de isomorfismo} de un grafo es una clase de equivalencia de
 grafos bajo la relación de isomofismos.
 
+\subsubsection{Ejemplos}
+\label{ssec:ejemplos}
+
 \begin{itemize}
     \item Todos los caminos de \(n\) vértices son insomorfismos.
-    \item El conjunto de todos los caminos de \(n\) vértices forma una clase
-        dde isomorfismo.
+    \item El conjunto de todos los caminos de \(n\) vértices forma una clase de
+        isomorfismo.
 \end{itemize}
 
 \subsection{Grafos sin etiquetas}
@@ -186,6 +207,20 @@ exactamente una arista entre cada par de vértices. (Vértices adyacentes 2 a 2)
 \label{ssec:kmn}
 
 \textbf{Grafo bipartito completo} \(K_{m,n}\) : Grafo bipartito simple tal que dos vértices son adyacentes sii están en conjuntos partitos diferentes de tamaño \(m\) y \(n\) respectivamente. (\textbf{biclique}).
+
+\begin{obs}
+    Cuando se hace mención a \textbf{grafos sin nombrar los vértices} ,
+    normalmente nos estaremos refiriendo a su \textbf{clase de isomorfismo}.
+    Tecnicamente, <<\(H\) es un subgrafo de \(G\)>> que algún subgrafo  de \(G\)
+    es isomorfo a \(H\) (se podría decir <<\(G\) contiene una copia de
+    \(H\)>>). Sea \(C_3\)  un subgrafo de \(K_5\) (todo \textbf{grafo completo}
+    de 5 vertices tiene 10 subgrafos isomorfos a \(C_3\) ) pero no significa
+    que lo sea de \(K_{2,3}\).
+
+    Sucedo lo mismo al preguntar si \(G\) <<es>> \(C_{n}\), pues se está
+    preguntando si \(G\) es isomorfo con un ciclo de \(n\) vértices.
+\end{obs}
+
 
 \subsection{Ejemplo - Grafos de n vértices}
 \label{ssec:ejemplo_grafos_de_n_vertices}
@@ -240,8 +275,22 @@ descomposición que cnsiste en dos copias de \(G\). (Grafos isomorfos con \(G\)
 
 
 \subsection{Grafo de Petersen}
-\label{ssec:grafo_de_petersen}
+El \textbf{grafo de Petersen} es el grafo simple cuyo conjunto de vértices son
+subconjuntos de 2 elementos de un conjunto de 5 elementos y sus aristas son
+pares disyuntos.
+\begin{figure}[ht]
+    \centering
+    \incfig[0.5]{grafo-de-petersen}
+    \caption{grafo de Petersen}
+    \label{fig:grafo-de-petersen}
+\end{figure}
 
+\subsection{Cintura}
+La cintura (\textit{girth}) de un grafo con ciclos es la longitud de su ciclo
+más pequeñoo. Un grafo sin ciclos es de \textit{cintura} infinita.
+
+\subsection{Circunferencia}
+La \textit{circunferencia} de un grafo es la longitud de su ciclo más largo.
 
 
 

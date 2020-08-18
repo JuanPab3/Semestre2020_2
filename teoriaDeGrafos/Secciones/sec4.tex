@@ -1,0 +1,224 @@
+\documentclass[a4paper,dvipsnames]{book}
+
+% ====| P A C K A G E S |==== %
+\usepackage{import}
+\usepackage{nicematrix}
+%\usepackage[backend=biber, style=authoryear-icomp]{biblatex}    %Bibliography stuff
+%\input{./../../commands.tex}
+\usepackage[margin=1in,includefoot]{geometry}   %Margins
+\usepackage[utf8]{inputenc} %Language stuff
+%\usepackage [latin1]{inputenc}  %Spanish symbols
+\usepackage[spanish]{babel} %Sets document language to spanish
+\usepackage{tcolorbox}  %Frame boxes
+\usepackage{enumerate}  %Lists options
+\usepackage{mfirstuc}   %I use it to capitalize words
+\usepackage{graphicx}   %Use Images
+\usepackage{listings}   %For displaying code
+\usepackage{titlesec}   %Costume titles/sections/...
+\usepackage{hyperref}   %Linking options
+\usepackage{multicol}	%Use column
+\usepackage{amsmath}    %Display equations options
+\usepackage{amssymb}    %More symbols
+\usepackage{titling}    %Use title variables in other places
+\usepackage{xcolor}     %To manage colors
+\usepackage{transparent}%For figures
+\usepackage{pdfpages}   %For figures
+% =========================== %
+
+% ====| P A C K A G E S    S E T T I N G S |==== %
+% \addbibresource{/media/jpi/Data/01_Education/04_bibiografia/bibliography.bib} %<--- Bibliography path
+% ============================================== %
+
+% ====| P E R S O N A L    C O M M A N D S    &    E N V I R O N M E N T S|==== %
+
+% - New figure
+\newcommand{\incfig}[2][1]{%
+    \def\svgwidth{#1\columnwidth}
+    \import{./figures/}{#2.pdf_tex}
+}
+
+\pdfsuppresswarningpagegroup=1
+
+% - New page
+\newcommand{\np}{\null\newpage}
+
+% - new homework
+\newenvironment{tarea}[3]
+    {
+        \null\newpage
+        \begin{tcolorbox}
+            \textbf{\asignatura\ -\ \autor}
+            \subsection{\capitalisewords{#1}}
+            \label{ssec:#1}
+            \begin{flushright}
+            \textbf{Desde:}  #2 \
+            \textbf{Hasta:}  #3 \
+            \end{flushright}
+        \end{tcolorbox}
+
+    \begin{enumerate}[{Ejercicio} 1.]
+    }
+    {
+        \end{enumerate}
+        \np
+    }
+
+% - new observation
+\newenvironment{obs}
+    {
+        \begin{flushleft}
+       \textbf{Observación}\
+        \line(1,0){200} \
+        \end{flushleft}
+    }
+    {
+        \begin{flushright}
+        \line(1,0){200}
+        \end{flushright}
+    }
+% ============================================================================= %
+
+\begin{document}
+
+\section{18.08.2020 - Continuación de lo anterior}
+\label{sec:continuacion_de_lo_anterior}
+
+\begin{obs}
+    Las clases de equivalencia de la relación de conexión en
+    \(V\left(G\right)\) son los conjuntos de vértices de las componentes de
+    \(G\).
+\end{obs}
+
+\subsection{Proposición}
+
+Todo grafo con \(n\) vértices y \(k\) aristas tiene al menos \(n-k\) componentes
+
+\begin{obs}
+    \begin{itemize}
+        \item Las componentes de un grafo son disyuntas y no comparten
+            vértices. Si se agrega una arista con extremos en distintas
+            componentes, estas se combinan en una nueva componente.
+        \item Agregar una arista a \(G\) disminuye el número de componentes en 1 ó 0.
+        \item Quitar una arista a \(G\) aumenta el número de componentes en 1 ó 0.
+    \end{itemize}
+\end{obs}
+
+\subsubsection{Demostración}
+\begin{center}
+    \textbf{M I N    2 5    D E    L A    C L A S E}
+\end{center}
+
+\subsection{Arista de corte-vértice de corte}
+\label{ssec:arista_de_corte_vertice_de_corte}
+
+Una \textbf{arista de corte} o un \textbf{vértice de corte} es unna arista o
+vértice cuya eliminación incrementa el número de componentes.
+
+\begin{obs}
+    \begin{itemize}
+        \item  Al eliminaar un vértice se  deben eliminar todas las aristas incidentes.
+        \item  El número de componentes podría aumetar en más de una. Como el caso de \(K_{1,m}\)
+    \end{itemize}
+\end{obs}
+\begin{figure}[ht]
+    \centering
+    \incfig[0.5]{k1m}
+    \caption{k1m}
+    \label{fig:k1m}
+\end{figure}
+
+\subsection{Definición}
+
+\begin{itemize}
+    \item \(G-e\): Subgrafo que se obtiene al eliminar la arista \(e\).
+    \item \(G-v\): Subgrafo que se obtiene al eliminar la arista \(e\).
+    \item \(G-M\): Subgrafo que se obtiene al eliminar el conjunto de aristas \(M\).
+    \item \(G-S\): Subgrafo que se obtiene al eliminar el conjunto de vértices \(S\).
+\end{itemize}
+
+\subsection{Grafo Inducido}
+\label{ssec:grafo_inducido}
+
+Un \textbf{subgrafo} es un subgrafo que se obtiene al eliminar un conjunto de vértices. Se escribe \(G\left[T\right]\) para \(G-\overline{T}\) donde \(\overline{T}=V\left(G\right)-T\), este es el subgrafo iducido por \(T\).
+
+\subsection{Ejercicio}
+
+Un conjunto \(S\) de vértices es independiente sii \(G\left[S\right]\) no tiene
+aristas.
+
+\subsection{Teorema}
+
+Una arista \(e\) es una arista de corte sii no pertenece a ningún ciclo.
+
+
+\subsection{Lema}
+
+Toda caminata cerrada impar contiene un ciclo impar.
+
+\subsection{Ejercicio}
+
+¿Toda caminata cerrada par contiene un ciclo par?  {\color{Violet} \textbf{N \ \ O}}
+
+\subsection{Teorema de (König)}
+\label{ssec:teorema_de_konig_}
+
+Un grafo \(G\) es bibpartito sii no tiene ciclos impares.
+
+\subsection{Unión}
+\label{ssec:union}
+
+La unión de grafos \(G_1,G_2,\ldots,G_{k}\) notada \(G_1\cup G_2\cup \ldots\cup
+G_{k}\) es el grafo  \(G\) con conjuntos de vértices
+\[ V\left(G\right) =\bigcup_{i=1}^{k}V\left(G_{i}\right) ,\]
+y conjunto de aristas
+\[E\left(G\right)=\bigcup_{i=1}^{k}E\left(G_{i}\right).\]
+
+\subsubsection{Ejemplo}
+\(K_4\) es la unión de dos 4-ciclos bipartitos.
+
+\subsection{Sendero Euleriano - Circuito Euleriano}
+\label{ssec:sendero_euleriano_circuito_euleriano}
+\begin{itemize}
+    \item Un \textbf{Sendero Euleriano} en un grafo \(G\) es un sendero que
+        contiene todas las aristas de  \(G\).
+    \item  Un \textbf{Circuito Euleriano} en un grfo \(G\) es un circuito que
+        contiene todas las aristas de \(G\).
+\end{itemize}
+
+\subsection{Grafo Euleriano}
+\label{ssec:grafo_euleriano}
+Un \textbf{grafo} \(G\) es \textbf{Euleriano} si tiene un circuito Euleriano.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
