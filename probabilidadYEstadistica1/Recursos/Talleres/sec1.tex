@@ -105,8 +105,8 @@ estudiante que no sea genio ni que le guste el chocolate.
     &=0.7+0.6-0.4\\
     &=0.9\\
     \\
-    P\left(\overline{A\cup B}\right) &= 1-P\left(A\cup B\right)
-    &= 1-0.9
+    P\left(\overline{A\cup B}\right) &= 1-P\left(A\cup B\right)\\
+    &= 1-0.9\\
     &=0.1
 \end{align*}
 
@@ -201,7 +201,7 @@ contra los otros dos no importa}.
 \subsubsection{Respuestas}
 \begin{figure}[ht]
     \centering
-    \incfig[0.7]{dosdasos}
+    \incfig[0.5]{dosdasos}
 \end{figure}
 \begin{enumerate}[{a) }]
     \item Ya que todos los valores tiene la misma posibilidad, significa que
@@ -209,10 +209,10 @@ contra los otros dos no importa}.
         \(\frac{1}{36}\)} de posibilidad. Luego como hay seis situaciones donde
         se cumple la condición, se puede concluir afirmando que la posibilidad
         de sacar soble es de {\color{Mulberry} \(\frac{1}{6}\)}.
-    \item Como los únicos dobles menores o iguales a cuatro son los que se
-        forman con {\color{OrangeRed} 1} y {\color{Cerulean} 2}, se puede
-        concluir que la probabilidad de que salgnan dobles es igual a
-        {\color{MidnightBlue} \(\frac{1}{18}\)}.
+    \item Como solo hay seis posibles resultados donde la suma de ambos dados
+        es menor o igual a seis, y solo dos de ellos son dobles, se tiene que
+        la probabilidad para que esto suceda es de {\color{MidnightBlue}
+        \(\frac{1}{3}\)}.
     \item Ya que entre las 36 situaciones posibles de esté lanzamiento once
         cumplen la condición, se puede concluir afirmando que la probabilidad
         de que al menos uno de los dados sea 6, es de {\color{YellowOrange}
@@ -220,7 +220,8 @@ contra los otros dos no importa}.
     \item Revisando el \textit{punto} anterior, se puede ver que la
         unica situación que encaja ahí pero no en este \textit{punto}, es en el
         caso de que ambos dados caigan en seis, por lo tanto se debe hacer el
-        mismo cálculo pero con una opción menos; siendo esto igual {\color{Cyan}\(\frac{5}{18}\)}.
+        mismo cálculo pero con una opción menos; siendo esto igual
+        {\color{Cyan} \(\frac{5}{18}\)}.
 \end{enumerate}
 
 
@@ -253,6 +254,12 @@ Si se analiza el problema, se
         \item Si el vuelo llegó a tiempo, ¿cuál es la probabilidad de que haya
             salido a tiempo?
     \end{enumerate}
+
+    \subsubsection{Respuestas}
+    \begin{enumerate}[{a) }]
+        \item
+    \end{enumerate}
+
 
 
 
@@ -296,23 +303,62 @@ Se selecciona una persona al azar:
         \item \(P\left(A|B\right)\)
         \item \(P\left(B|A\right)\)
          \item \(P\left(A|A\cap B\right)\)
-         \item \(P\left(A|A\cap B\right)\)
-         \item \(P\left(A\cap B|A\cap B\right)\)
+         \item \(P\left(A|A\cup B\right)\)
+         \item \(P\left(A\cap B|A\cup B\right)\)
+    \end{itemize}
+
+    \subsubsection{Respuestas}
+
+    \begin{itemize}
+        \item \begin{align*}
+            P\left(A|B\right)&= \frac{P\left(A\cap B\right)}{P\left(B\right)} \\
+            &= \frac{0.1}{0.3} \\
+            &= \frac{1}{3} \\\end{align*}
+        \item  \begin{align*}
+            P\left(B|A\right)&= \frac{P\left(A\cap B\right)}{P\left(A\right)} \\A
+            &= \frac{0.1}{0.5} \\
+            &= \frac{1}{5} \\
+        \end{align*}
+        \item \begin{align*}
+                P\left(A|A\cap B\right)&= \frac{P\left(A\cap A\cap B\right)}{P\left(A\cap B\right)} \\
+                &= \frac{P\left(A\cap B\right)}{P\left(A\cap B\right)} \\
+                &= 1 \\
+        \end{align*}
+        \item \begin{align*}
+                P\left(A|A\cup B\right)&= P\left(A\cap \left(A\cup B\right) \right)\\
+                &= \frac{P\left(A\right)}{P\left(A\cup B\right)} \\
+                &= \frac{P\left(A\right)}{P\left(A\right)+P\left(B\right)-P\left(A\cap B\right)} \\
+                &= \frac{0.5}{0.5+0.3-0.1} =\frac{5}{7}\\
+        \end{align*}
+        \item \begin{align*}
+                P\left(A\cap B|A\cup B\right)&= \frac{P\left(\left(A\cap
+                B\right)\cap \left(A\cup B\right)  \right)}{P\left(A\cup
+                B\right)}\\
+                &= \frac{P\left(A\cap B\right)}{P\left(A\cup B\right)} \\
+                &= \frac{0.1}{0.7}=\frac{1}{7} \\
+        .\end{align*}
     \end{itemize}
 
 
+\item Sean \(A\) y \(B\) eventos. Muestre que \(P\left(A\cap
+    B|B\right)=P\left(A|B\right)\), suponiendo que \(P\left(B\right)>0\).
+
+    \subsubsection{Respuesta}
+
+    \begin{align*}
+        P\left(A\cap B|B\right)&=\frac{P\left(\left(A\cap B\right) \cap B\right)}{P\left(B\right)}  \\
+        &= \frac{P\left(A\cap B\right)}{P\left(B\right)} \\
+        &= P\left(A|B\right) \\
+    \end{align*}
 
 
-\item Sean \(A\) y \(B\) eventos. Muestre que \(P\left(A\cap B|B\right)=P\left(A|B\right)\), suponiendo que \(P\left(B\right)>0\).
-
-
-
-
-
-
-
-
-\item Se tienen \(k\) cajas, cada una con \(m\) bolas blancas y \(n\) negras. Se selecciona al azar una bola de la primera caja y se transfiere a la segunda caja. Luego se selecciona al azar una bola de la segunda caja y se transfiere a la tercera. Se repite el ejercicio hasta que al final se selecciona una bola al azar de las \(k\)-ésima caja. Muestre que la probabilidad de que la última bola seablanca es la misma que de que al primera sea blanca,\textit{i.e, \(\frac{m}{\left(m+n\right) }\)}.
+\item Se tienen \(k\) cajas, cada una con \(m\) bolas blancas y \(n\) negras.
+    Se selecciona al azar una bola de la primera caja y se transfiere a la
+    segunda caja. Luego se selecciona al azar una bola de la segunda caja y se
+    transfiere a la tercera. Se repite el ejercicio hasta que al final se
+    selecciona una bola al azar de las \(k\)-ésima caja. Muestre que la
+    probabilidad de que la última bola seablanca es la misma que de que al
+    primera sea blanca,\textit{i.e, \(\frac{m}{\left(m+n\right) }\)}.
 
 
 

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/Arch Linux) (preloaded format=pdflatex 2020.8.11)  17 AUG 2020 14:42
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/Arch Linux) (preloaded format=pdflatex 2020.8.11)  18 AUG 2020 20:54
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -756,8 +756,8 @@ File: ./figures/t1ej2.pdf Graphic file (type pdf)
 Package pdftex.def Info: ./figures/t1ej2.pdf , page1 used on input line 56.
 (pdftex.def)             Requested size: 149.48022pt x 74.74039pt.
 )
-LaTeX Info: Redefining \. on input line 146.
-LaTeX Info: Redefining \% on input line 146.
+LaTeX Info: Redefining \. on input line 144.
+LaTeX Info: Redefining \% on input line 144.
  [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
 
  <./figures/t1ej1.pdf> <./figures/t1ej1.pdf> <./figures/t1ej2.pdf>] (./figures/dosdasos.pdf_tex
@@ -765,7 +765,7 @@ LaTeX Info: Redefining \% on input line 146.
 File: ./figures/dosdasos.pdf Graphic file (type pdf)
 <use ./figures/dosdasos.pdf, page 1>
 Package pdftex.def Info: ./figures/dosdasos.pdf , page1 used on input line 56.
-(pdftex.def)             Requested size: 317.07614pt x 158.5407pt.
+(pdftex.def)             Requested size: 226.48395pt x 113.24112pt.
 ) [2 <./figures/dosdasos.pdf>] (./figures/caracarasellosello.pdf_tex
 <./figures/caracarasellosello.pdf, id=235, page=1, 682.86612pt x 341.43306pt>
 File: ./figures/caracarasellosello.pdf Graphic file (type pdf)
@@ -773,33 +773,36 @@ File: ./figures/caracarasellosello.pdf Graphic file (type pdf)
 Package pdftex.def Info: ./figures/caracarasellosello.pdf , page1 used on input line 56.
 (pdftex.def)             Requested size: 226.48395pt x 113.24112pt.
 )
-LaTeX Info: Redefining \. on input line 314.
-LaTeX Info: Redefining \% on input line 314.
+LaTeX Info: Redefining \. on input line 304.
+LaTeX Info: Redefining \% on input line 304.
  [3 <./figures/caracarasellosello.pdf>] [4]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 342.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 342.
+LaTeX Info: Redefining \. on input line 389.
+LaTeX Info: Redefining \% on input line 389.
+ [5]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 389.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 389.
  (./sec1.aux
 LaTeX Info: Redefining \. on input line 25.
 LaTeX Info: Redefining \% on input line 25.
 )
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 342.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 342.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 389.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 389.
 Package rerunfilecheck Info: File `sec1.out' has not changed.
 (rerunfilecheck)             Checksum: 890C3777E6914E7A1065D47BAE77D35D;58.
  ) 
 Here is how much of TeX's memory you used:
- 21884 strings out of 480478
- 404740 string characters out of 5905959
- 695305 words of memory out of 5000000
- 37444 multiletter control sequences out of 15000+600000
+ 21891 strings out of 480478
+ 404845 string characters out of 5905959
+ 697305 words of memory out of 5000000
+ 37446 multiletter control sequences out of 15000+600000
  535649 words of font info for 37 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 52i,14n,75p,845b,605s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 52i,14n,75p,845b,606s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsl10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb>
-Output written on sec1.pdf (4 pages, 197705 bytes).
+Output written on sec1.pdf (5 pages, 199710 bytes).
 PDF statistics:
- 348 PDF objects out of 1000 (max. 8388607)
- 253 compressed objects within 3 object streams
- 44 named destinations out of 1000 (max. 500000)
+ 357 PDF objects out of 1000 (max. 8388607)
+ 261 compressed objects within 3 object streams
+ 49 named destinations out of 1000 (max. 500000)
  46 words of extra memory for PDF output out of 10000 (max. 10000000)
 
